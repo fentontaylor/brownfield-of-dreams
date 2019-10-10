@@ -4,11 +4,11 @@ class UserFacade
   end
 
   def followers
-    service.get_followers.map { |hash| Follower.new(hash) }
+    service.get_followers.map { |hash| GithubUser.new(hash) }
   end
 
   def following
-    service.get_following.map { |hash| Following.new(hash) }
+    service.get_following.map { |hash| GithubUser.new(hash) }
   end
 
   private
