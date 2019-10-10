@@ -43,4 +43,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # mock omniauth for GitHub
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+      'provider' => 'github',
+      'uid' => '123545',
+      'credentials' => {
+        'token' => ENV['GITHUB_API_KEY'],
+        'secret' => 'mock_secret'
+      }
+    })
 end
