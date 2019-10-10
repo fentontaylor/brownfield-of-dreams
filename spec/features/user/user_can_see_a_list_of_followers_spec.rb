@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'As a registered user' do
   it 'can see list of their followers that are links' do
+
+    stub_github_info("fentons")
+
     user = create(:user, token: ENV['GITHUB_API_KEY'])
 
     visit login_path
