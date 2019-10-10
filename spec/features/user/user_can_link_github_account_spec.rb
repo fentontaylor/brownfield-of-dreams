@@ -14,8 +14,9 @@ describe 'A registered user' do
     expect(page).to have_link("Connect to Github")
 
     click_on "Connect to Github"
-    
+
     expect(page).to_not have_link("Connect to Github")
     expect(page).to have_css(".github-info")
+
   end
 end
