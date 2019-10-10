@@ -1,18 +1,14 @@
 class GithubService
   def get_repos
-    response = conn.get do |req|
-      req.url 'user/repos'
-      req.params['affiliation'] = 'owner'
-    end
-    JSON.parse(response.body, symbolize_names: true)
+    get_json('user/repos')
   end
 
   def get_followers
-    response = conn.get do |req|
-      req.url 'user/followers'
-      req.params['affiliation'] = 'owner'
-    end
-    JSON.parse(response.body, symbolize_names: true)
+    get_json('user/followers')
+  end
+
+  def get_following
+    get_json('user/following')
   end
 
   private
@@ -20,5 +16,13 @@ class GithubService
   def conn
     Faraday.new('https://api.github.com/',
       headers: {'Authorization' => "bearer #{ENV['GITHUB_API_KEY']}"})
+  end
+
+  def get_json(path)
+    response = conn.get do |req|
+      req.url path
+      req.params['affiliation'] = 'owner'
+    end
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
