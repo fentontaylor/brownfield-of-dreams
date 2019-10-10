@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'vcr'
 require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
 
 VCR.configure do |config|
   # config.allow_http_connections_when_no_cassette = true
@@ -49,4 +50,18 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+end
+
+
+#pass user as "fentons", "nancys", or "nathans" to use stubbed_github_info
+def stub_github_info(user)
+  repos = File.open("./fixtures/#{user}_repos.json")
+  stub_request(:get, "https://api.github.com/user/repos?affiliation=owner")
+  .to_return(status: 200, body: repos)
+  followers = File.open("./fixtures/#{user}_followers.json")
+  stub_request(:get, "https://api.github.com/user/followers?affiliation=owner")
+  .to_return(status: 200, body: followers)
+  following = File.open("./fixtures/#{user}_following.json")
+  stub_request(:get, "https://api.github.com/user/following?affiliation=owner")
+  .to_return(status: 200, body: following)
 end
