@@ -1,19 +1,19 @@
 class UserFacade
   def repos
-    GithubService.new.get_repos.map do |hash|
-      Repo.new(hash)
-    end.first(5)
+    service.get_repos.map { |hash| Repo.new(hash) }.first(5)
   end
 
   def followers
-    GithubService.new.get_followers.map do |hash|
-      Follower.new(hash)
-    end
+    service.get_followers.map { |hash| Follower.new(hash) }
   end
 
   def following
-    GithubService.new.get_following.map do |hash|
-      Following.new(hash)
-    end
+    service.get_following.map { |hash| Following.new(hash) }
+  end
+
+  private
+
+  def service
+    @_service ||= GithubService.new
   end
 end
