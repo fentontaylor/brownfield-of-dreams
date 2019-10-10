@@ -1,0 +1,42 @@
+[
+    {
+        "login": "hadley",
+        "id": 4196,
+        "node_id": "MDQ6VXNlcjQxOTY=",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/4196?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hadley",
+        "html_url": "https://github.com/hadley",
+        "followers_url": "https://api.github.com/users/hadley/followers",
+        "following_url": "https://api.github.com/users/hadley/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hadley/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hadley/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hadley/subscriptions",
+        "organizations_url": "https://api.github.com/users/hadley/orgs",
+        "repos_url": "https://api.github.com/users/hadley/repos",
+        "events_url": "https://api.github.com/users/hadley/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hadley/received_events",
+        "type": "User",
+        "site_admin": false
+    },
+    {
+        "login": "nancylee713",
+        "id": 24424825,
+        "node_id": "MDQ6VXNlcjI0NDI0ODI1",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/24424825?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/nancylee713",
+        "html_url": "https://github.com/nancylee713",
+        "followers_url": "https://api.github.com/users/nancylee713/followers",
+        "following_url": "https://api.github.com/users/nancylee713/following{/other_user}",
+        "gists_url": "https://api.github.com/users/nancylee713/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/nancylee713/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/nancylee713/subscriptions",
+        "organizations_url": "https://api.github.com/users/nancylee713/orgs",
+        "repos_url": "https://api.github.com/users/nancylee713/repos",
+        "events_url": "https://api.github.com/users/nancylee713/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/nancylee713/received_events",
+        "type": "User",
+        "site_admin": false
+    }
+]

@@ -28,6 +28,10 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
 gem 'rubocop', '~> 0.75.0', require: false
 
+group :test do
+  gem 'webmock'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
@@ -38,7 +42,6 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'awesome_print'
-  gem 'webmock'
   gem 'simplecov'
   gem 'vcr'
   gem 'selenium-webdriver'

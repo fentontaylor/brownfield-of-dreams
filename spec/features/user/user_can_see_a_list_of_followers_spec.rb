@@ -2,7 +2,10 @@ require 'rails_helper'
 
 describe 'As a registered user' do
   it 'can see list of their followers that are links' do
-    user = create(:user)
+
+    stub_default_github_info
+
+    user = create(:user, token: ENV['GITHUB_API_KEY'])
 
     visit login_path
 

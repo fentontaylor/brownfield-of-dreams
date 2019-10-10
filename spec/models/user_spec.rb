@@ -8,11 +8,18 @@ RSpec.describe User, type: :model do
   end
 
   describe 'roles' do
-    it 'can be created as default user' do
+    it 'can be created as default user without token' do
       user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
+      expect(user).to be_an_instance_of(User)
 
       expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
+    end
+
+    it 'can be created as default user with token' do
+      user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0, token: 'randomstring')
+      
+      expect(user).to be_an_instance_of(User)
     end
 
     it 'can be created as an Admin user' do
