@@ -1,4 +1,4 @@
-class Following
+class GithubUser
   attr_reader :user_name, :html_url
 
   def initialize(hash)
