@@ -15,6 +15,14 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def get_following
+    response = conn.get do |req|
+      req.url 'user/following'
+      req.params['affiliation'] = 'owner'
+    end
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
   private
 
   def conn

@@ -10,4 +10,10 @@ class UserFacade
       Follower.new(hash)
     end
   end
+
+  def following
+    GithubService.new.get_following.map do |hash|
+      Following.new(hash)
+    end
+  end
 end

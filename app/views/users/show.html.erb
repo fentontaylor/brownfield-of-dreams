@@ -30,7 +30,15 @@
           <li><%= link_to follower.user_name, follower.html_url, class: 'follower-link' %></li>
         <% end %>
       </ul>
+    </section>
 
+    <section class='github-following'>
+      <h3>Following</h3>
+      <ul>
+        <% @user.following.each do |following| %>
+          <li><%= link_to following.user_name, following.html_url, class: 'following-link' %></li>
+        <% end %>
+      </ul>
     </section>
   </section>
 </section>
