@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'As a registered user' do
+  before :each do
+    VCR.turn_off!
+  end
+
   it 'can see list of 5 repos that are links' do
     user = create(:user, token: ENV["GITHUB_API_KEY"])
 
@@ -26,7 +30,7 @@ describe 'As a registered user' do
     # This fixture file was created with a real call to the endpoint with
     # the actual API key represented by ENV['GITHUB_API_KEY_NL']
     nancys_repos = File.open('./fixtures/nancys_repos.json')
-    stub_request(:get, 'https://api.github.com/user/repos')
+    stub_request(:get, 'https://api.github.com/user/repos?affiliation=owner')
       .to_return(status: 200, body: nancys_repos)
 
     visit login_path
@@ -52,7 +56,7 @@ describe 'As a registered user' do
     # This fixture file was created with a real call to the endpoint with
     # the actual API key represented by ENV['GITHUB_API_KEY_NT']
     nathans_repos = File.open('./fixtures/nathans_repos.json')
-    stub_request(:get, 'https://api.github.com/user/repos')
+    stub_request(:get, 'https://api.github.com/user/repos?affiliation=owner')
       .to_return(status: 200, body: nathans_repos)
 
     visit login_path
