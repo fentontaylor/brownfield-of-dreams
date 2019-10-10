@@ -10,35 +10,38 @@
   <section>
     <h3>Bookmarked Segments</h3>
   </section>
+  <% if current_user.token %>
+    <section class='github-info'>
+      <h2>GitHub</h2>
+      <hr>
+      <section class='github-repos'>
+        <h3>Repos</h3>
+        <ul>
+          <% @user.repos.each do |repo| %>
+            <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
+          <% end %>
+        </ul>
+      </section>
 
-  <section class='github-info'>
-    <h2>GitHub</h2>
-    <hr>
-    <section class='github-repos'>
-      <h3>Repos</h3>
-      <ul>
-        <% @user.repos.each do |repo| %>
-          <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
-        <% end %>
-      </ul>
-    </section>
+      <section class='github-followers'>
+        <h3>Followers</h3>
+        <ul>
+          <% @user.followers.each do |follower| %>
+            <li><%= link_to follower.user_name, follower.html_url, class: 'follower-link' %></li>
+          <% end %>
+        </ul>
+      </section>
 
-    <section class='github-followers'>
-      <h3>Followers</h3>
-      <ul>
-        <% @user.followers.each do |follower| %>
-          <li><%= link_to follower.user_name, follower.html_url, class: 'follower-link' %></li>
-        <% end %>
-      </ul>
+      <section class='github-following'>
+        <h3>Following</h3>
+        <ul>
+          <% @user.following.each do |following| %>
+            <li><%= link_to following.user_name, following.html_url, class: 'following-link' %></li>
+          <% end %>
+        </ul>
+      </section>
     </section>
-
-    <section class='github-following'>
-      <h3>Following</h3>
-      <ul>
-        <% @user.following.each do |following| %>
-          <li><%= link_to following.user_name, following.html_url, class: 'following-link' %></li>
-        <% end %>
-      </ul>
-    </section>
-  </section>
+  <% else %>
+    <p><%= link_to 'Connect to your GitHub account?', '#' %></p>
+  <% end %>
 </section>

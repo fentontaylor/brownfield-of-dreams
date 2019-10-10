@@ -1,4 +1,8 @@
 class UserFacade
+  def initialize(user)
+    @user = user
+  end
+
   def repos
     service.get_repos.map { |hash| Repo.new(hash) }.first(5)
   end
@@ -14,6 +18,6 @@ class UserFacade
   private
 
   def service
-    @_service ||= GithubService.new
+    @_service ||= GithubService.new(@user)
   end
 end
