@@ -9,7 +9,7 @@ describe 'As a registered user' do
 
     user = create(:user, token: ENV["GITHUB_API_KEY"])
 
-    stub_github_info("fentons")
+    stub_default_github_info
 
     visit login_path
 

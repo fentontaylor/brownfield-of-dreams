@@ -4,7 +4,7 @@ describe 'As a registered user' do
   it 'can see list of people they follow that are links' do
     user = create(:user, token: ENV['GITHUB_API_KEY'])
 
-    stub_github_info("fentons")
+    stub_default_github_info
 
     visit login_path
 

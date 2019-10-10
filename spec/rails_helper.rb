@@ -52,6 +52,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
+def stub_default_github_info
+  stub_github_info('fentons')
+end
 
 #pass user as "fentons", "nancys", or "nathans" to use stubbed_github_info
 def stub_github_info(user)
