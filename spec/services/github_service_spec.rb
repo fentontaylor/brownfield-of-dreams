@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe "GithubService" do
   it "returns parsed repo data" do
-    service = GithubService.new
+    nancy = User.create!(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'])
+
+    service = GithubService.new(nancy)
 
     github_repos = service.get_repos
 
