@@ -1,0 +1,42 @@
+[
+    {
+        "login": "fentontaylor",
+        "id": 18686466,
+        "node_id": "MDQ6VXNlcjE4Njg2NDY2",
+        "avatar_url": "https://avatars0.githubusercontent.com/u/18686466?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/fentontaylor",
+        "html_url": "https://github.com/fentontaylor",
+        "followers_url": "https://api.github.com/users/fentontaylor/followers",
+        "following_url": "https://api.github.com/users/fentontaylor/following{/other_user}",
+        "gists_url": "https://api.github.com/users/fentontaylor/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/fentontaylor/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/fentontaylor/subscriptions",
+        "organizations_url": "https://api.github.com/users/fentontaylor/orgs",
+        "repos_url": "https://api.github.com/users/fentontaylor/repos",
+        "events_url": "https://api.github.com/users/fentontaylor/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/fentontaylor/received_events",
+        "type": "User",
+        "site_admin": false
+    },
+    {
+        "login": "leiyakenney",
+        "id": 45922590,
+        "node_id": "MDQ6VXNlcjQ1OTIyNTkw",
+        "avatar_url": "https://avatars3.githubusercontent.com/u/45922590?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/leiyakenney",
+        "html_url": "https://github.com/leiyakenney",
+        "followers_url": "https://api.github.com/users/leiyakenney/followers",
+        "following_url": "https://api.github.com/users/leiyakenney/following{/other_user}",
+        "gists_url": "https://api.github.com/users/leiyakenney/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/leiyakenney/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/leiyakenney/subscriptions",
+        "organizations_url": "https://api.github.com/users/leiyakenney/orgs",
+        "repos_url": "https://api.github.com/users/leiyakenney/repos",
+        "events_url": "https://api.github.com/users/leiyakenney/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/leiyakenney/received_events",
+        "type": "User",
+        "site_admin": false
+    }
+]
