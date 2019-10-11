@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get '/auth/developer', as: :developer_auth
   get '/auth/github', as: :github_auth
-  match '/auth/:provider/callback', to: 'users#update', via: [:get, :post]
+  get '/auth/github/callback', to: 'users#update'
 
   namespace :admin do
     get "/dashboard", to: "dashboard#show"

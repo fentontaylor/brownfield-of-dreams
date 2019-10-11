@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:update]
+  # skip_before_action :verify_authenticity_token, only: [:update]
 
   def show
     @user = UserFacade.new(current_user)
