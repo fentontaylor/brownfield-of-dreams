@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'users#update'
 
   resources :friendships, only: [:create]
+  delete '/friendship', to: 'friendships#destroy'
 
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
