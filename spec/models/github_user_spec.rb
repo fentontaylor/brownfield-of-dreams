@@ -30,7 +30,6 @@ describe 'GithubUser' do
 
       expect(ghuser_1.is_friend_of?(current_user)).to be true
       expect(ghuser_2.is_friend_of?(current_user)).to be false
-
     end
   end
 end
