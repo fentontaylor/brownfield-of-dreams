@@ -115,7 +115,11 @@ m3_tutorial.videos.create!({
   "position"=>6
 })
 
-User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
-User.create!(email: 'fenton@example.com', first_name: 'Fenton', last_name: 'Taylor', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_FT'])
-User.create!(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'])
-User.create!(email: 'nathan@example.com', first_name: 'Nathan', last_name: 'Thomas', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NT'])
+
+User.create(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
+ft = User.create(email: 'fenton@example.com', first_name: 'Fenton', last_name: 'Taylor', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_FT'])
+Identity.create(provider: 'github', uid: 1234, user_name: 'fentontaylor', user: ft)
+nl = User.create(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'])
+Identity.create(provider: 'github', uid: 2345, user_name: 'nancylee713', user: nl)
+nt = User.create(email: 'nathan@example.com', first_name: 'Nathan', last_name: 'Thomas', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NT'])
+Identity.create(provider: 'github', uid: 3456, user_name: 'nathangthomas', user: nt)

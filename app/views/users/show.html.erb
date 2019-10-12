@@ -10,6 +10,20 @@
   <section>
     <h3>Bookmarked Segments</h3>
   </section>
+
+  <section class='friends-list'>
+    <h3>My Friends</h3>
+    <% current_user.friends.each do |friend| %>
+      <ul>
+        <li id="friend-<%= friend.id %>">
+          <%= "#{friend.first_name} #{friend.last_name} (#{friend.gh_user_name})" %>
+          <%= button_to 'Remove Friend', '/friendship', params: {user_id: current_user.id, friend_id: friend.id}, method: :delete %>
+        </li>
+      </ul>
+    <% end %>
+
+  </section>
+
   <% if current_user.token %>
     <section class='github-info'>
       <h2>GitHub</h2>
@@ -27,7 +41,14 @@
         <h3>Followers</h3>
         <ul>
           <% @user.followers.each do |follower| %>
-            <li><%= link_to follower.user_name, follower.html_url, class: 'follower-link' %></li>
+            <li id='follower-<%= follower.user_name %>'>
+              <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
+              <% if app_user?(follower) %>
+                <% unless follower.is_friend_of?(current_user) %>
+                  <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name)  %>
+                <% end %>
+              <% end  %>
+            </li>
           <% end %>
         </ul>
       </section>
@@ -36,7 +57,14 @@
         <h3>Following</h3>
         <ul>
           <% @user.following.each do |following| %>
-            <li><%= link_to following.user_name, following.html_url, class: 'following-link' %></li>
+            <li id='following-<%= following.user_name %>'>
+              <%= link_to following.user_name, following.html_url, class: 'following-link' %>
+              <% if app_user?(following) %>
+                <% unless following.is_friend_of?(current_user) %>
+                  <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
+                <% end %>
+              <% end  %>
+            </li>
           <% end %>
         </ul>
       </section>
