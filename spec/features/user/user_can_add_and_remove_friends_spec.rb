@@ -14,11 +14,10 @@ describe 'A registered user' do
       uid: '123456',
       user_name: 'nancylee713',
       provider: 'github',
-      user_id: @github_follower_user.id
+      user: @github_follower_user
     }
 
     @github_follower_user_identity = Identity.create!(info)
-
     stub_default_github_info
 
     visit login_path
@@ -62,11 +61,28 @@ describe 'A registered user' do
 
     expect(page).to have_content("You've added #{@github_follower_user_identity.user_name} to your friends list!")
 
-    within '.github-followers' do
-      within "#follower-#{@github_follower_user_identity.user_name}" do
-        expect(page).to_not have_button("Add as Friend")
+    within '.friends-list' do
+      user = @github_follower_user
+      github_user_name = @github_follower_user_identity.user_name
+      within "#friend-#{user.id}" do
+        expect(page).to have_content("#{user.first_name} #{user.last_name} (#{github_user_name})")
         expect(page).to have_button("Remove Friend")
       end
     end
+
+    within '.github-followers' do
+      within "#follower-#{@github_follower_user_identity.user_name}" do
+        expect(page).to_not have_button("Add as Friend")
+      end
+    end
   end
+
+  it "can click a link to delete friend" do
+    within '.github-followers' do
+      within "#follower-#{@github_follower_user_identity.user_name}" do
+        expect(page).to_not have_button("Add as Friend")
+      end
+    end
+  end
+
 end
