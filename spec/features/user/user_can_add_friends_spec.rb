@@ -12,7 +12,7 @@ describe 'A registered user' do
 
     info = {
       uid: '123456',
-      username: 'nancylee713',
+      user_name: 'nancylee713',
       provider: 'github',
       user_id: @github_follower_user.id
     }
@@ -30,49 +30,43 @@ describe 'A registered user' do
   it "can see a link to add friend if their followers or followings are also users of the app" do
     within '.github-info' do
       within '.github-followers' do
-        within "li#follower-#{@github_follower_user_identity.username}" do
+        within "#follower-#{@github_follower_user_identity.user_name}" do
           expect(page).to have_button("Add as Friend")
         end
 
-        within "li#follower-#{@github_follower.username}" do
+        within "#follower-#{@github_follower.user_name}" do
           expect(page).to_not have_button("Add as Friend")
         end
       end
 
       within '.github-following' do
-        within "li#following-#{@github_follower_user_identity.username}" do
+        within "#following-#{@github_follower_user_identity.user_name}" do
           expect(page).to have_button("Add as Friend")
         end
 
-        within "li#following-#{@github_following.username}" do
+        within "#following-#{@github_following.user_name}" do
           expect(page).to_not have_button("Add as Friend")
         end
       end
     end
   end
 
-  it "can click a link to add friend and see its name on dashboard" do
+  it "can click a link to add friend and see friend status next to its name" do
     within '.github-info' do
       within '.github-followers' do
-        within "li#follower-#{@github_follower_user_identity.username}" do
+        within "#follower-#{@github_follower_user_identity.user_name}" do
           click_on "Add as Friend"
         end
       end
     end
 
-    expect(page).to have_content("You've added #{@github_follower_user.first_name} to your friends list!")
+    expect(page).to have_content("You've added #{@github_follower_user_identity.user_name} to your friends list!")
 
     within '.github-followers' do
-      within "li##{@github_follower_user_identity.username}" do
+      within "#follower-#{@github_follower_user_identity.user_name}" do
         expect(page).to_not have_button("Add as Friend")
+        expect(page).to have_button("Remove Friend")
       end
-    end
-
-    within '.friends-list' do
-      expect(page).to have_content('My Friends')
-      expect(page).to have_content(@github_follower_user.first_name)
-      expect(page).to_not have_content(@github_following.username)
-      expect(page).to_not have_content(@github_follower.username)
     end
   end
 end
