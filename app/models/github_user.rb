@@ -5,4 +5,9 @@ class GithubUser
     @user_name = hash[:login]
     @html_url = hash[:html_url]
   end
+
+  def is_friend_of?(current_user)
+    friend_id = Identity.find_by(user_name: @user_name).user_id
+    !!Friendship.find_by(user_id: current_user.id, friend_id: friend_id)
+  end
 end
