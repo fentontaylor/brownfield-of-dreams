@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :videos, through: :user_videos
 
   has_many :friendships
-  has_many :friends, class_name: 'User', foreign_key: "id"
+  has_many :friends, through: :friendships
   has_many :identities
 
   validates :email, uniqueness: true, presence: true
