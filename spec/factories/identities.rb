@@ -3,7 +3,7 @@ FactoryBot.define do
     provider "MyString"
     uid 1
     user nil
-    username "MyString"
+    user_name "MyString"
     image_url "MyString"
   end
 end
