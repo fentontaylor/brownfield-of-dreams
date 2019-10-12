@@ -29,9 +29,9 @@
           <% @user.followers.each do |follower| %>
             <li id='follower-<%= follower.user_name %>'>
               <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
-
-              <%= button_to "Add as Friend", friendships_path %>
-
+              <% if app_user?(follower) %>
+                <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name) %>
+              <% end %>
             </li>
           <% end %>
         </ul>
@@ -43,6 +43,12 @@
           <% @user.following.each do |following| %>
             <li id='following-<%= following.user_name %>'>
               <%= link_to following.user_name, following.html_url, class: 'following-link' %>
+              <% if app_user?(following) %>
+                <% if following.is_friend_of?(current_user) %>
+                  <%= button_to "Remove Friend", '#', method: :delete  %>
+                <% end %>
+                  <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
+              <% end %>
             </li>
           <% end %>
         </ul>

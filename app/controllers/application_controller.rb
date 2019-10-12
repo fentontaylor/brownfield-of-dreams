@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
+  helper_method :app_user?
   helper_method :current_user
   helper_method :find_bookmark
   helper_method :list_tags
   helper_method :tutorial_name
 
   add_flash_types :success
+
+  def app_user?(user)
+    !!Identity.find_by(user_name: user.user_name)
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
