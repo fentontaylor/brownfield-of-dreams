@@ -15,7 +15,10 @@
     <h3>My Friends</h3>
     <% current_user.friends.each do |friend| %>
       <ul>
-        <li id="friend-<%= friend.id %>"> <%= "#{friend.first_name} #{friend.last_name} (#{friend.gh_user_name})" %> </li>
+        <li id="friend-<%= friend.id %>">
+          <%= "#{friend.first_name} #{friend.last_name} (#{friend.gh_user_name})" %>
+          <%= button_to 'Remove Friend', '/friendship', params: {user_id: current_user.id, friend_id: friend.id}, method: :delete %>
+        </li>
       </ul>
     <% end %>
 
