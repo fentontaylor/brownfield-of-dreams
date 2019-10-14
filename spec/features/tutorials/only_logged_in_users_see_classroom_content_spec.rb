@@ -6,7 +6,7 @@ describe "'Classroom' tutorials are restricted" do
     @vid_1 = create(:video, tutorial: @non_classroom)
 
     @classroom = create(:tutorial, classroom: true)
-    @vid_2 = create(:video, tutorial: @non_classroom)
+    @vid_2 = create(:video, tutorial: @classroom)
   end
 
   context 'As a non-logged-in visitor' do
@@ -15,6 +15,18 @@ describe "'Classroom' tutorials are restricted" do
 
       expect(page).to have_css('.tutorial', count: 1)
       expect(page).to have_content(@non_classroom.title)
+    end
+
+    it 'I CANNOT manually visit a restricted tutorial' do
+      visit "/tutorials/#{@non_classroom.id}"
+
+      expect(page).to have_content(@non_classroom.title)
+      expect(page).to have_css('#player')
+
+      visit "/tutorials/#{@classroom.id}"
+      expect(page).to have_content("You must be logged in to view this content.")
+      expect(page).to have_content("Please log in or create a free account.")
+      expect(page).to_not have_css('#player')
     end
   end
 
