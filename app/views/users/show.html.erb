@@ -7,8 +7,17 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+
+  <section class='bookmarked'>
     <h3>Bookmarked Segments</h3>
+    <% @user.bookmarked_tutorials.each do |tutorial| %>
+      <h4 id="bookmarked-tutorial-<%= tutorial.id %>">Tutorial: <%= tutorial.title %></h4>
+
+      <% @user.bookmarked_videos(tutorial).each do |video| %>
+        <li id=bookmarked-video-<%= video.id %>><%= video.title %></li>
+      <% end %>
+
+    <% end %>
   </section>
 
   <section class='friends-list'>
