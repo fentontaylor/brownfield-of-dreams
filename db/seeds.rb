@@ -123,7 +123,7 @@ m3_tutorial.videos.create!({
 
 no_videos_tutorial_data = {
   "title"=>"No Videos Here",
-  "description"=>"If you are looking for videos you ain't oging to find 'em here!'",
+  "description"=>"There are currently no videos available for this tutorial. We are working on it. Come back soon.",
   "thumbnail"=>"https://i.ytimg.com/vi/R5FPYQgB6Zc/hqdefault.jpg",
   "playlist_id"=>"arandomplaylistid318",
   "classroom"=>true,
