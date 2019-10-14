@@ -72,6 +72,7 @@ mod_3_tutorial_data = {
 }
 m3_tutorial = Tutorial.create! mod_3_tutorial_data
 
+
 m3_tutorial.videos.create!({
   "title"=>"Customizing JSON in your API",
   "description"=> Faker::Hipster.paragraph(2, true),
@@ -115,6 +116,16 @@ m3_tutorial.videos.create!({
   "position"=>6
 })
 
+no_videos_tutorial_data = {
+  "title"=>"No Videos Here",
+  "description"=>"If you are looking for videos you ain't oging to find 'em here!'",
+  "thumbnail"=>"https://i.ytimg.com/vi/R5FPYQgB6Zc/hqdefault.jpg",
+  "playlist_id"=>"arandomplaylistid318",
+  "classroom"=>true,
+  "tag_list"=>["Internet", "BDD", "Ruby"],
+}
+
+Tutorial.create! no_videos_tutorial_data
 
 User.create(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
 ft = User.create(email: 'fenton@example.com', first_name: 'Fenton', last_name: 'Taylor', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_FT'])
