@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :find_bookmark
   helper_method :list_tags
   helper_method :tutorial_name
+  helper_method :restricted_tutorial?
 
   add_flash_types :success
 
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def tutorial_name(id)
     Tutorial.find(id).title
+  end
+
+  def restricted_tutorial?(tutorial)
+    !tutorial.classroom || current_user
   end
 
   def four_oh_four
