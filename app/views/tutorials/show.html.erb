@@ -1,7 +1,11 @@
 <main class="tutorials">
 <h2><%= @facade.title %></h2>
 <h1 id="message"></h1>
-<% if @facade.current_video != nil %>
+
+<% if restricted_tutorial?(@facade.tutorial) %>
+  <main class="tutorials">
+  <h2><%= @facade.title %></h2>
+  <h1 id="message"></h1>
   <div class="col col-4">
     <h4>Videos</h4>
     <ul>
@@ -59,16 +63,18 @@
       }
     </script>
   </div>
-
+  <div>
     <h4>Description</h4>
     <p data-controller="tutorials" id="description-<%= @facade.current_video.id %>">
       <%= @facade.current_video.description.truncate(50) %>...
       <%= link_to "More", "#", "data-action" => "click->tutorials#showDescription", id: @facade.current_video.id, class: "show-link"%>
     </p>
   </div>
-  <% else %>
-    <%= "This tutorial has no videos at this time." %>
 
+  </main>
+<% else %>
+  <div class="login-warning">
+    <h3>You must be logged in to view this content.</h3>
+    <h4>Please sign in or create a free account.</h4>
+  </div>
 <% end %>
-
-</main>
