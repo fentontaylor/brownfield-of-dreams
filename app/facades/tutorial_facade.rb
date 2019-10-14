@@ -1,4 +1,6 @@
 class TutorialFacade < SimpleDelegator
+  attr_reader :tutorial
+
   def initialize(tutorial, video_id = nil)
     @tutorial = super(tutorial)
     @video_id = video_id
@@ -18,10 +20,6 @@ class TutorialFacade < SimpleDelegator
 
   def play_next_video?
     !(current_video.position >= maximum_video_position)
-  end
-
-  def restricted?
-    @tutorial.classroom
   end
 
   private
