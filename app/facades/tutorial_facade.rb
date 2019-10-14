@@ -8,7 +8,7 @@ class TutorialFacade < SimpleDelegator
 
   def current_video
     if videos.empty?
-      videos << Video.new(title: "This tutorial has no videos at this time.", description: "Sorry, there are no videos for this tutorial at this time. We are working on it, please check back soon.", video_id: "0", thumbnail: "https://giphy.com/gifs/cjzkCDL3jZTZB6ki1B/html5", tutorial_id: self.id, position: 1)
+      videos << Video.new(title: "This tutorial has no videos at this time.", description: "Sorry, there are no videos for this tutorial at this time. We are working on it, please check back soon.", video_id: "0", thumbnail: "https://media.giphy.com/media/cjzkCDL3jZTZB6ki1B/giphy.gif", tutorial_id: self.id, position: 1)
 
       videos.first
 
