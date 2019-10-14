@@ -3,6 +3,14 @@ class UserFacade
     @user = user
   end
 
+  def bookmarked_tutorials
+    @user.user_videos.map { |uv| Tutorial.find(Video.find(uv.video_id).tutorial_id) }.uniq
+  end
+
+  def bookmarked_videos(tutorial)
+    @user.user_videos.map { |uv| Video.find(uv.video_id) }.select { |v| v.tutorial_id == tutorial.id }
+  end
+
   def repos
     service.get_repos.map { |hash| Repo.new(hash) }.first(5)
   end
