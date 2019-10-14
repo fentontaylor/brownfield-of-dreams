@@ -17,6 +17,9 @@ describe 'As a registered user' do
 
     visit root_path
     click_on('Sample Tutorial')
+    
+    save_and_open_page
+
     #confirmed that current_video is nill when current_video.video is called
 
     #added conditional to check for current_video != nil before rendering the rest of the page. If it is nil it returns a message letting user know ther are no videos for the tutorial yet.
