@@ -1,3 +1,6 @@
+Video.destroy_all
+Tutorial.destroy_all
+
 prework_tutorial_data = {
   "title"=>"Back End Engineering - Prework",
   "description"=>"Videos for prework.",
@@ -6,6 +9,14 @@ prework_tutorial_data = {
   "classroom"=>false,
 }
 prework_tutorial = Tutorial.create! prework_tutorial_data
+
+prework_tutorial.videos.create!({
+  "title"=>"Sample video with position nil",
+  "description"=> Faker::Hipster.paragraph(2, true),
+  "video_id"=>"qMkRHW9zE1c",
+  "thumbnail"=>"https://i.ytimg.com/vi/qMkRHW9zE1c/hqdefault.jpg",
+  "position"=> nil
+})
 
 prework_tutorial.videos.create!({
   "title"=>"Prework - Environment Setup",
