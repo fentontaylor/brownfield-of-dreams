@@ -12,7 +12,9 @@
   </section>
 
   <section class='friends-list'>
-    <h3>My Friends</h3>
+    <% if current_user.friends != [] %>
+      <h3>My Friends</h3>
+    <% end %>
     <% current_user.friends.each do |friend| %>
       <ul>
         <li id="friend-<%= friend.id %>">
