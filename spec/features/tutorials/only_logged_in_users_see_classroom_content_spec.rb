@@ -25,21 +25,35 @@ describe "'Classroom' tutorials are restricted" do
 
       visit "/tutorials/#{@classroom.id}"
       expect(page).to have_content("You must be logged in to view this content.")
-      expect(page).to have_content("Please log in or create a free account.")
+      expect(page).to have_content("Please sign in or create a free account.")
       expect(page).to_not have_css('#player')
     end
   end
 
   context 'As a logged-in user' do
-    it 'I CAN see videos marked as "classroom"' do
+    before :each do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    end
 
+    it 'I CAN see videos marked as "classroom"' do
       visit '/'
 
       expect(page).to have_css('.tutorial', count: 2)
       expect(page).to have_content(@non_classroom.title)
       expect(page).to have_content(@classroom.title)
+    end
+
+    it 'I CAN manually visit a restricted tutorial' do
+      visit "/tutorials/#{@non_classroom.id}"
+
+      expect(page).to have_content(@non_classroom.title)
+      expect(page).to have_css('#player')
+
+      visit "/tutorials/#{@classroom.id}"
+
+      expect(page).to have_content(@classroom.title)
+      expect(page).to have_css('#player')
     end
   end
 end
