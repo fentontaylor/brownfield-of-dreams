@@ -15,6 +15,7 @@ describe "'Classroom' tutorials are restricted" do
 
       expect(page).to have_css('.tutorial', count: 1)
       expect(page).to have_content(@non_classroom.title)
+      expect(page).to_not have_content(@classroom.title)
     end
 
     it 'I CANNOT manually visit a restricted tutorial' do
