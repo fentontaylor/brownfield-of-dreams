@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :render_not_found
   helper_method :app_user?
   helper_method :current_user
   helper_method :find_bookmark
@@ -6,6 +7,10 @@ class ApplicationController < ActionController::Base
   helper_method :tutorial_name
 
   add_flash_types :success
+
+  def render_not_found
+    render :file => "/public/404.html",  :status => 404
+  end
 
   def app_user?(user)
     !!Identity.find_by(user_name: user.user_name)
