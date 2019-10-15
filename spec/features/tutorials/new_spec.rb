@@ -9,7 +9,7 @@ require 'rails_helper'
 
 describe 'As an admin' do
   describe 'When I visit /admin/tutorials/new' do
-    context 'And I fill in the form correctly' do
+    context 'I fill in the form correctly and click Save' do
       it 'Creates a new tutorial' do
         admin = create(:user, role: 1)
         allow_any_instance_of(ApplicationController)
@@ -37,8 +37,11 @@ describe 'As an admin' do
         expect(current_path).to eq tutorial_path(tutorial)
         expect(page).to have_content("Successfully created tutorial.")
         expect(page).to have_content(title)
-        expect(page).to have_content(description)
       end
+    end
+
+    context "I don't fill in the fields and click save" do
+      
     end
   end
 end
