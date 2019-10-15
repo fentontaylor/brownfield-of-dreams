@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get '/auth/github', as: :github_auth
   get '/auth/github/callback', to: 'users#update'
 
+  get "/invite", to: 'invite#new'
+  post "/invite/create", to: 'invite#create'
+
   resources :friendships, only: [:create]
   delete '/friendship', to: 'friendships#destroy'
 
