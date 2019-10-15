@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
-    resources :tutorials, only: [:create, :edit, :update, :destroy, :new] do
+    resources :tutorials do
       resources :videos, only: [:create]
     end
     resources :videos, only: [:edit, :update, :destroy]
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
-  get '/dashboard', to: 'users#show'
+  get '/dashboard', to: 'users#show' 
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 
@@ -44,8 +44,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :update, :edit]
 
-  resources :tutorials, only: [:show, :index] do
-    resources :videos, only: [:show, :index]
+  resources :tutorials, only: [:show, :index, :destroy] do
+    resources :videos, only: [:show, :index, :destroy]
   end
 
   resources :user_videos, only:[:create, :destroy]
