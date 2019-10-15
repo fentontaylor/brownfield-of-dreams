@@ -11,10 +11,11 @@
   <section class='bookmarked'>
     <h3>Bookmarked Segments</h3>
     <% @user.bookmarked_tutorials.each do |tutorial| %>
+    <% binding.pry %>
       <h4 id="bookmarked-tutorial-<%= tutorial.id %>">Tutorial: <%= tutorial.title %></h4>
 
-      <% @user.bookmarked_videos(tutorial).each do |video| %>
-        <li id=bookmarked-video-<%= video.id %>><%= video.title %></li>
+      <% @user.bookmarked_videos(tutorial.id).each do |video| %>
+        <li id=bookmarked-video-<%= tutorial.video_id %>><%= tutorial.video_title %></li>
       <% end %>
 
     <% end %>

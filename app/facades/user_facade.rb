@@ -12,11 +12,27 @@ class UserFacade
   # end
 
   def bookmarked_tutorials
-    @user.user_videos.map { |uv| Tutorial.find(Video.find(uv.video_id).tutorial_id) }.uniq
+    Tutorial.joins(:users)
+      .where("users.id = #{@user.id}")
+      .select(
+        "tutorials.id as id,
+        tutorials.title as title,
+        videos.id as video_id,
+        videos.title as video_title"
+      )
+    # @user.user_videos
+    #   .joins(:tutorial)
+    #   .select(
+    #     'videos.title AS video_title,
+    #     tutorials.title AS tutorial_title,
+    #     videos.id AS video_id,
+    #     tutorials.id AS tutorial_id'
+    #   )
+    # @user.user_videos.map { |uv| Tutorial.find(Video.find(uv.video_id).tutorial_id) }.uniq
   end
 
-  def bookmarked_videos(tutorial)
-    @user.user_videos.map { |uv| Video.find(uv.video_id) }.select { |v| v.tutorial_id == tutorial.id }
+  def bookmarked_videos(tutorial_id)
+    @user.user_videos.map { |uv| Video.find(uv.video_id) }.select { |v| v.tutorial_id == tutorial_id }
   end
 
   def repos
