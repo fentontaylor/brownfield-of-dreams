@@ -1,11 +1,4 @@
 require 'rails_helper'
-# When I visit '/admin/tutorials/new'
-# And I fill in 'title' with a meaningful name
-# And I fill in 'description' with a some content
-# And I fill in 'thumbnail' with a valid YouTube thumbnail
-# And I click on 'Save'
-# Then I should be on '/tutorials/{NEW_TUTORIAL_ID}'
-# And I should see a flash message that says "Successfully created tutorial."
 
 describe 'As an admin' do
   describe 'When I visit /admin/tutorials/new' do
@@ -45,7 +38,7 @@ describe 'As an admin' do
     context "I don't fill in the fields and click save" do
       it 'Does not save, but gives a flash message with the fields I missed' do
         click_button 'Save'
-        
+
         expect(page).to have_content("Title can't be blank, Description can't be blank, and Thumbnail can't be blank")
       end
     end
