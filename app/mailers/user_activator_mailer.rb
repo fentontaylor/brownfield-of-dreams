@@ -1,0 +1,2 @@
+class UserActivatorMailer < ApplicationMailer
+end

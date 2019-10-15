@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [:update]
-
   def show
     @user = UserFacade.new(current_user)
   end
@@ -13,6 +11,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
+      # trigger email for activation
       flash[:success] = "Logged in as #{user.first_name}"
       redirect_to dashboard_path
     else
