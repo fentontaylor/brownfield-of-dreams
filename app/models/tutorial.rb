@@ -6,8 +6,4 @@ class Tutorial < ApplicationRecord
 
   acts_as_taggable_on :tags, :tag_list
   accepts_nested_attributes_for :videos
-
-  def bookmarked_videos
-    self.user_videos.joins(:video).select("videos.id, videos.title").order("videos.position")
-  end
 end

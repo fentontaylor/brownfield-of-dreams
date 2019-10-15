@@ -3,10 +3,6 @@ class UserFacade
     @user = user
   end
 
-  def bookmarked_tutorials
-    Tutorial.includes(:users).where(users: {id: @user.id})
-  end
-
   def repos
     service.get_repos.map { |hash| Repo.new(hash) }.first(5)
   end
