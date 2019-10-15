@@ -13,6 +13,11 @@
 
   <h3>Videos</h3>
 
+<div id="import-youtube-playlist-link">
+  <%= link_to 'Import YouTube Playlist', new_admin_tutorial_path, remote: true %>
+</div>
+
+
   <%= f.fields_for :videos do |builder| %>
     <%= f.label :youtube_url %>
     <%= f.text_field :video_id, class: "block col-4 field" %>
