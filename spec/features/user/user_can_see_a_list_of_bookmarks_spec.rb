@@ -29,26 +29,19 @@ describe 'As a registered user' do
     click_on 'Log In'
 
     within '.bookmarked' do
-      within "#bookmarked-tutorial-#{tutorial_1.id}" do
-        expect(page).to have_content(tutorial_1.title)
+      within "#bookmark-#{video_1.id}" do
+        expect(page).to have_link("#{tutorial_1.title} - #{video_1.title}")
       end
 
-      within "#bookmarked-video-#{video_1.id}" do
-        expect(page).to have_content(video_1.title)
+      within "#bookmark-#{video_2.id}" do
+        expect(page).to have_link("#{tutorial_1.title} - #{video_2.title}")
       end
 
-      within "#bookmarked-video-#{video_2.id}" do
-        expect(page).to have_content(video_2.title)
+      within "#bookmark-#{video_3.id}" do
+        expect(page).to have_link("#{tutorial_2.title} - #{video_3.title}")
       end
 
-      within "#bookmarked-tutorial-#{tutorial_2.id}" do
-        expect(page).to have_content(tutorial_2.title)
-      end
-
-      within "#bookmarked-video-#{video_3.id}" do
-        expect(page).to have_content(video_3.title)
-      end
-
+      expect(page).to_not have_css("#bookmark-#{video_4.id}")
       expect(page).to_not have_content(video_4.title)
     end
   end

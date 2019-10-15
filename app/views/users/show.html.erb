@@ -12,8 +12,8 @@
     <h3>Bookmarked Segments</h3>
     <% @user.bookmarked_tutorials.each do |tutorial| %>
       <h4 id="bookmarked-tutorial-<%= tutorial.id %>">Tutorial: <%= tutorial.title %></h4>
+      <% tutorial.bookmarked_videos.each do |video| %>
 
-      <% tutorial.videos.each do |video| %>
         <li id=bookmarked-video-<%= video.id %>><%= video.title %></li>
       <% end %>
 
