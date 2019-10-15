@@ -16,12 +16,31 @@
 
     <main class="px4">
       <div class="flash-message">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
-        <% end %>
-      </div>
 
+    <div>
+      <% flash.each do |key, msg| %>
+    <div class="<%= flash_class(key) %>">
+      <%= msg %>
+      <% end %>
+    </div>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <style type="text/css">
+      .alert-success{
+    color: green;
+    }
+    .alert-danger{
+    color: red;
+    }
+  </style>
       <%= yield %>
-    </main>
+  </main>
+
   </body>
 </html>
