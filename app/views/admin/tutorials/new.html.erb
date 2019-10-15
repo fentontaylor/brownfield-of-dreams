@@ -6,6 +6,10 @@
   <%= f.text_area :description, class: "block col-4 field"  %>
   <%= f.label :thumbnail %>
   <%= f.text_field :thumbnail, class: "block col-4 field"  %>
+  <%= f.radio_button :classroom, false %>
+  <%= f.label :free_content, 'Free Content' %>
+  <%= f.radio_button :classroom, true %>
+  <%= f.label :classroom_content, 'Classroom Content' %>
 
   <h3>Videos</h3>
 

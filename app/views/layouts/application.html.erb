@@ -4,6 +4,7 @@
     <title>TuringTutorials</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= javascript_include_tag "application" %>
 
     <link href="https://unpkg.com/basscss@7.1.1/css/basscss.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
@@ -15,12 +16,31 @@
 
     <main class="px4">
       <div class="flash-message">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
-        <% end %>
-      </div>
 
+    <div>
+      <% flash.each do |key, msg| %>
+    <div class="<%= flash_class(key) %>">
+      <%= msg %>
+      <% end %>
+    </div>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <style type="text/css">
+      .alert-success{
+    color: green;
+    }
+    .alert-danger{
+    color: red;
+    }
+  </style>
       <%= yield %>
-    </main>
+  </main>
+
   </body>
 </html>

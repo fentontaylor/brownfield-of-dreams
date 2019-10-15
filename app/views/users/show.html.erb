@@ -17,10 +17,9 @@
     <% end %>
   </section>
 
+  <% if current_user.friends != [] %>
   <section class='friends-list'>
-    <% if current_user.friends != [] %>
       <h3>My Friends</h3>
-    <% end %>
     <% current_user.friends.each do |friend| %>
       <ul>
         <li id="friend-<%= friend.id %>">
@@ -29,8 +28,8 @@
         </li>
       </ul>
     <% end %>
-
   </section>
+  <% end %>
 
   <% if current_user.token %>
     <section class='github-info'>
