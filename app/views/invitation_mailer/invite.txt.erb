@@ -1,0 +1,8 @@
+<% uri = "/register" %>
+<% production =  "http://brownfielddreams.herokuapp.com" + uri %>
+<% dev_test =  "http://localhost:3000" + uri %>
+<% url = Rails.env == 'production' ? production : dev_test %>
+
+Hello <%= @real_name %>,
+
+<%= @inviter %> has invited you to join Turing Tutorials. You can <%= link_to "create an account here", url %>.
