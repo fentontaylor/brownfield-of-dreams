@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
     it {should have_many :identities }
 
   end
+  
   describe 'roles' do
     it 'can be created as default user without token' do
       user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
