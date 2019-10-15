@@ -3,6 +3,13 @@ class UserFacade
     @user = user
   end
 
+  # def bookmarked
+  #   tutorials = @user.user_videos.joins(video: :tutorial)
+  #     .select("tutorials.id")
+  #     .map {|obj| Tutorial.find(obj.id)}
+  #     .uniq
+  # end
+
   def bookmarked_tutorials
     @user.user_videos.map { |uv| Tutorial.find(Video.find(uv.video_id).tutorial_id) }.uniq
   end
