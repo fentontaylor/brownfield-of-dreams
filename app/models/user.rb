@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :user_videos
+  has_many :videos, through: :user_videos
   has_many :tutorials, through: :videos
 
   has_many :friendships
@@ -14,5 +15,9 @@ class User < ApplicationRecord
 
   def gh_user_name
     identities.where(provider: "github").first.user_name
+  end
+
+  def bookmarked_videos
+    videos.includes(:tutorial).order("videos.tutorial_id, videos.position")
   end
 end
