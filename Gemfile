@@ -28,6 +28,9 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
 gem 'rubocop', '~> 0.75.0', require: false
 gem 'omniauth-github', '1.1.1'
+gem 'sprockets-rails'
+gem 'bootstrap'
+gem 'jquery-rails'
 
 group :test do
   gem 'webmock'
