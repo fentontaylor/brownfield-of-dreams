@@ -3,36 +3,8 @@ class UserFacade
     @user = user
   end
 
-  # Using active record
-  # def bookmarked_tutorials
-  #   @user.user_videos.joins(video: :tutorial)
-  #     .select("tutorials.id")
-  #     .map {|obj| Tutorial.find(obj.id)}
-  #     .uniq
-  # end
-
   def bookmarked_tutorials
-    Tutorial.joins(:users)
-      .where("users.id = #{@user.id}")
-      .select(
-        "tutorials.id as id,
-        tutorials.title as title,
-        videos.id as video_id,
-        videos.title as video_title"
-      )
-    # @user.user_videos
-    #   .joins(:tutorial)
-    #   .select(
-    #     'videos.title AS video_title,
-    #     tutorials.title AS tutorial_title,
-    #     videos.id AS video_id,
-    #     tutorials.id AS tutorial_id'
-    #   )
-    # @user.user_videos.map { |uv| Tutorial.find(Video.find(uv.video_id).tutorial_id) }.uniq
-  end
-
-  def bookmarked_videos(tutorial_id)
-    @user.user_videos.map { |uv| Video.find(uv.video_id) }.select { |v| v.tutorial_id == tutorial_id }
+    Tutorial.includes(:users).where(users: {id: @user.id})
   end
 
   def repos
