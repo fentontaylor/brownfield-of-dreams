@@ -11,7 +11,7 @@
   </ul>
 
   <% if active_user? %>
-    <%= link_to "Send an Invite", '/invite' %>
+    <%= link_to "Send an Invite", '/invite', class: "btn btn-primary mb1 bg-teal" %>
 
     <%= render partial: 'partials/dashboard/bookmarks', locals: {user: @user, has_bookmarks: @user.has_bookmarks?} %>
     <%= render partial: 'partials/dashboard/friends', locals: {user: @user, has_friends: @user.has_friends?} %>

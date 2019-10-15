@@ -1,5 +1,5 @@
+<h3>Enter a friend's GitHub handle</h3>
 <%= form_tag('/invite/create') do %>
-  <%= label_tag "GitHub Handle" %>
-  <%= text_field_tag "GitHub Handle" %>
-  <%= submit_tag "Send Invite" %>
+  <p><%= text_field_tag "GitHub Handle" %></p>
+  <%= submit_tag "Send Invite", class: "btn btn-primary mb1 bg-teal" %>
 <% end %>
