@@ -9,17 +9,19 @@ require 'rails_helper'
 
 describe 'As an admin' do
   describe 'When I visit /admin/tutorials/new' do
+    before :each do
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController)
+        .to receive(:current_user)
+        .and_return(admin)
+
+      visit admin_dashboard_path
+
+      click_link 'New Tutorial'
+    end
+
     context 'I fill in the form correctly and click Save' do
       it 'Creates a new tutorial' do
-        admin = create(:user, role: 1)
-        allow_any_instance_of(ApplicationController)
-          .to receive(:current_user)
-          .and_return(admin)
-
-        visit admin_dashboard_path
-
-        click_link 'New Tutorial'
-
         expect(current_path).to eq '/admin/tutorials/new'
 
         title = 'New Tutorial Title'
@@ -41,7 +43,11 @@ describe 'As an admin' do
     end
 
     context "I don't fill in the fields and click save" do
-      
+      it 'Does not save, but gives a flash message with the fields I missed' do
+        click_button 'Save'
+        fill_in 'Title', with: 'Hey'
+        expect(page).to have_content("Title can't be blank, Description can't be blank, and Thumbnail can't be blank")
+      end
     end
   end
 end
