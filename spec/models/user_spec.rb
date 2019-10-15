@@ -54,5 +54,28 @@ RSpec.describe User, type: :model do
       expect(token).to be_a(String)
       expect(token.length).to eq(64)
     end
+
+    it '#bookmarked_videos' do
+      user = create(:user)
+      tutorial_1 = create(:tutorial, title: "How to Tie Your Shoes")
+      video_1 = create(:video, title: "The Bunny Ears Technique", tutorial: tutorial_1, position: 1)
+      video_2 = create(:video, title: "Tying a Basic Knot", tutorial: tutorial_1, position: 2)
+
+      tutorial_2 = create(:tutorial, title: "How to code in Ruby")
+      video_3 = create(:video, title: "How to use SimpleCov", tutorial: tutorial_2, position: 2)
+      video_4 = create(:video, title: "Not bookmarked", tutorial: tutorial_2, position: 1)
+
+      bookmarked_video_1 = create(:user_video, user: user, video: video_1)
+      bookmarked_video_2 = create(:user_video, user: user, video: video_2)
+      bookmarked_video_3 = create(:user_video, user: user, video: video_3)
+
+      expect(user.bookmarked_videos.count).to eq(3)
+      expect(user.bookmarked_videos.first.title).to eq("The Bunny Ears Technique")
+      expect(user.bookmarked_videos.second.title).to eq("Tying a Basic Knot")
+      expect(user.bookmarked_videos.third.title).to eq("How to use SimpleCov")
+
+      expected = user.bookmarked_videos.include? video_4
+      expect(expected).to eq(false)
+    end
   end
 end
