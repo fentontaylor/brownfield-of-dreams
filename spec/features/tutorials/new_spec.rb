@@ -45,7 +45,7 @@ describe 'As an admin' do
     context "I don't fill in the fields and click save" do
       it 'Does not save, but gives a flash message with the fields I missed' do
         click_button 'Save'
-        fill_in 'Title', with: 'Hey'
+        
         expect(page).to have_content("Title can't be blank, Description can't be blank, and Thumbnail can't be blank")
       end
     end
