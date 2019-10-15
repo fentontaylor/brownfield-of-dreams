@@ -1,4 +1,5 @@
 Identity.destroy_all
+UserVideo.destroy_all
 User.destroy_all
 Video.destroy_all
 Tutorial.destroy_all

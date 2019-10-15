@@ -7,8 +7,14 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+
+  <section class='bookmarked'>
     <h3>Bookmarked Segments</h3>
+    <% current_user.bookmarked_videos.each do |video| %>
+      <li id='bookmark-<%= video.id %>'>
+        <%= link_to "#{video.tutorial.title} - #{video.title}", tutorial_path(video.tutorial, params: { video_id: video.id }) %>
+      </li>
+    <% end %>
   </section>
 
   <% if current_user.friends != [] %>
