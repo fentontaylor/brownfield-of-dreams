@@ -44,8 +44,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :update, :edit]
 
-  resources :tutorials, only: [:show] do
-    resources :videos, only: [:show, :index]
+  resources :tutorials, only: [:show, :index, :destroy] do
+    resources :videos, only: [:show, :index, :destroy]
   end
 
   resources :user_videos, only:[:create, :destroy]
