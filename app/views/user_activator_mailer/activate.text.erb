@@ -1,4 +1,9 @@
 Hi <%= @user.first_name %>. Thank you for registering at Turing Tutorials.
 <% message = "Visit here to activate your account." %>
-<% url = '/activator' %>
-<%= link_to message, url, method: :post %>
+<% url =
+if Rails.env == 'production'
+  "http://brownfielddreams.herokuapp.com/activator/#{@user.id}"
+else
+  "http://localhost:3000/activator/#{@user.id}"
+end %>
+<%= link_to message, url %>

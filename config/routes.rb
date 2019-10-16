@@ -50,5 +50,5 @@ Rails.application.routes.draw do
 
   resources :user_videos, only:[:create, :destroy]
 
-  get '/activator', to: 'activator#update'
+  get '/activator/:id', to: 'activator#update'
 end
