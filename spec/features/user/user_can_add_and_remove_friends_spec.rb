@@ -17,8 +17,6 @@ describe 'A registered user' do
 
     @nancy_github = Identity.create!(info)
 
-
-
     stub_default_github_info
 
     visit login_path
@@ -28,6 +26,10 @@ describe 'A registered user' do
   end
 
   it "can see a link to add friend if their followers or followings are also users of the app" do
+    within '.friends-list' do
+      expect(page).to have_content("You haven't added any friends yet.")
+    end
+    
     within '.github-info' do
       within '.github-followers' do
         within "#follower-#{@nancy_github.user_name}" do
@@ -95,7 +97,10 @@ describe 'A registered user' do
       end
     end
 
-    expect(page).to_not have_css(".friends-list")
+    within '.friends-list' do
+      expect(page).to_not have_css("#friend-#{user.id}")
+      expect(page).to have_content("You haven't added any friends yet.")
+    end
 
     expect(page).to have_content("You removed #{user.first_name} #{user.last_name} from your friends list.")
 
