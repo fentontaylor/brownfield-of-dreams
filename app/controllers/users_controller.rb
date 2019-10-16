@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [:update]
-
   def show
-    @user = UserFacade.new(current_user)
+    if current_user
+      @user = UserFacade.new(current_user)
+    else
+      redirect_to login_path
+    end
   end
 
   def new
@@ -13,6 +15,8 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
+      UserActivatorMailer.activate(user).deliver_now
+      flash[:success] = "Logged in as #{user.first_name}"
       redirect_to dashboard_path
     else
       flash[:error] = 'Username already exists'

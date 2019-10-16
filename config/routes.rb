@@ -49,4 +49,6 @@ Rails.application.routes.draw do
   end
 
   resources :user_videos, only:[:create, :destroy]
+
+  get '/activator/:id', to: 'activator#update'
 end

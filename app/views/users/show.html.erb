@@ -4,10 +4,12 @@
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
   <ul>
-    <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
-    <li> <%= current_user.email%> </li>
+    <li><%= current_user.first_name  %> <%= current_user.last_name %></li>
+    <li><%= current_user.email%></li>
+    <li>Status: <%= active_user? ? 'Active' : 'Inactive'%></li>
   </ul>
 
+  <% if active_user? %>
   <section class='bookmarked'>
     <h3>Bookmarked Segments</h3>
     <% current_user.bookmarked_videos.each do |video| %>
@@ -32,51 +34,54 @@
   <% end %>
 
   <% if current_user.token %>
-    <section class='github-info'>
-      <h2>GitHub</h2>
-      <hr>
-      <section class='github-repos'>
-        <h3>Repos</h3>
-        <ul>
-          <% @user.repos.each do |repo| %>
-            <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
-          <% end %>
-        </ul>
-      </section>
+      <section class='github-info'>
+        <h2>GitHub</h2>
+        <hr>
+        <section class='github-repos'>
+          <h3>Repos</h3>
+          <ul>
+            <% @user.repos.each do |repo| %>
+              <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
+            <% end %>
+          </ul>
+        </section>
 
-      <section class='github-followers'>
-        <h3>Followers</h3>
-        <ul>
-          <% @user.followers.each do |follower| %>
-            <li id='follower-<%= follower.user_name %>'>
-              <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
-              <% if app_user?(follower) %>
-                <% unless follower.is_friend_of?(current_user) %>
-                  <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name)  %>
-                <% end %>
-              <% end  %>
-            </li>
-          <% end %>
-        </ul>
-      </section>
+        <section class='github-followers'>
+          <h3>Followers</h3>
+          <ul>
+            <% @user.followers.each do |follower| %>
+              <li id='follower-<%= follower.user_name %>'>
+                <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
+                <% if app_user?(follower) %>
+                  <% unless follower.is_friend_of?(current_user) %>
+                    <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name)  %>
+                  <% end %>
+                <% end  %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
 
-      <section class='github-following'>
-        <h3>Following</h3>
-        <ul>
-          <% @user.following.each do |following| %>
-            <li id='following-<%= following.user_name %>'>
-              <%= link_to following.user_name, following.html_url, class: 'following-link' %>
-              <% if app_user?(following) %>
-                <% unless following.is_friend_of?(current_user) %>
-                  <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
-                <% end %>
-              <% end  %>
-            </li>
-          <% end %>
-        </ul>
+        <section class='github-following'>
+          <h3>Following</h3>
+          <ul>
+            <% @user.following.each do |following| %>
+              <li id='following-<%= following.user_name %>'>
+                <%= link_to following.user_name, following.html_url, class: 'following-link' %>
+                <% if app_user?(following) %>
+                  <% unless following.is_friend_of?(current_user) %>
+                    <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
+                  <% end %>
+                <% end  %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
       </section>
-    </section>
+    <% else %>
+      <p><%= link_to "Connect to GitHub", :github_auth %></p>
+    <% end %>
   <% else %>
-    <p><%= link_to "Connect to Github", :github_auth %></p>
+    <h3 style="color:red">This account has not yet been activated. Please check your email.</h3>
   <% end %>
 </section>
