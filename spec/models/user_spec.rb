@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
     it {should have_many :identities }
 
   end
-  
+
   describe 'roles' do
     it 'can be created as default user without token' do
       user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
@@ -46,6 +46,13 @@ RSpec.describe User, type: :model do
       identity_1 = Identity.create(provider: 'github', uid: '1234', user: current_user, user_name: 'ghuser-1')
 
       expect(current_user.gh_user_name).to eq('ghuser-1')
+    end
+
+    it '#unique_token' do
+      user = create(:user)
+      token = user.unique_token
+      expect(token).to be_a(String)
+      expect(token.length).to eq(64)
     end
   end
 end
