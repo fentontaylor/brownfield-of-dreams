@@ -3,8 +3,16 @@ class UserFacade
     @user = user
   end
 
+  def has_friends?
+    !@user.friends.empty?
+  end
+
+  def has_bookmarks?
+    !@user.bookmarked_videos.empty?
+  end
+
   def repos
-    service.get_repos.map { |hash| Repo.new(hash) }.first(5)
+    service.get_repos.map { |hash| Repo.new(hash) }.shuffle.first(5)
   end
 
   def followers

@@ -1,0 +1,15 @@
+<section class='github-<%= type %>s'>
+  <h3>Followers</h3>
+  <ul>
+  <% github_users.each do |gh_user| %>
+    <li id='<%= type %>-<%= gh_user.user_name %>'>
+      <%= link_to gh_user.user_name, gh_user.html_url, class: "#{type}-link" %>
+      <% if app_user?(gh_user) %>
+        <% unless gh_user.is_friend_of?(current_user) %>
+          <%= button_to "Add as Friend", friendships_path(friend_name: gh_user.user_name)  %>
+        <% end %>
+      <% end  %>
+    </li>
+  <% end %>
+  </ul>
+</section>

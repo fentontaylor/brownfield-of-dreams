@@ -1,7 +1,8 @@
 <section class="dashboard-main">
-  <h1> <%= current_user.first_name %>'s Dashboard </h1>
+  <h2> <%= current_user.first_name %>'s Dashboard </h2>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
+  <hr>
   <h3>Account Details</h3>
   <ul>
     <li><%= current_user.first_name  %> <%= current_user.last_name %></li>
@@ -10,56 +11,19 @@
   </ul>
 
   <% if active_user? %>
-    <%= render partial: 'partials/dashboard/bookmarks', locals: {user: current_user} %>
-  <% if @user.has_friends? %>
-    <%= render partial: 'partials/dashboard/friends', locals: {user: current_user} %>
-
-  <% end %>
-
-  <% if current_user.token %>
+    <% if @user.has_bookmarks? %>
+      <%= render partial: 'partials/dashboard/bookmarks', locals: {user: current_user} %>
+    <% end %>
+    <% if @user.has_friends? %>
+      <%= render partial: 'partials/dashboard/friends', locals: {user: current_user} %>
+    <% end %>
+    <% if current_user.token %>
       <section class='github-info'>
-        <h2>GitHub</h2>
+        <h3>GitHub</h3>
         <hr>
-        <section class='github-repos'>
-          <h3>Repos</h3>
-          <ul>
-            <% @user.repos.each do |repo| %>
-              <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
-            <% end %>
-          </ul>
-        </section>
-
-        <section class='github-followers'>
-          <h3>Followers</h3>
-          <ul>
-            <% @user.followers.each do |follower| %>
-              <li id='follower-<%= follower.user_name %>'>
-                <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
-                <% if app_user?(follower) %>
-                  <% unless follower.is_friend_of?(current_user) %>
-                    <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name)  %>
-                  <% end %>
-                <% end  %>
-              </li>
-            <% end %>
-          </ul>
-        </section>
-
-        <section class='github-following'>
-          <h3>Following</h3>
-          <ul>
-            <% @user.following.each do |following| %>
-              <li id='following-<%= following.user_name %>'>
-                <%= link_to following.user_name, following.html_url, class: 'following-link' %>
-                <% if app_user?(following) %>
-                  <% unless following.is_friend_of?(current_user) %>
-                    <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
-                  <% end %>
-                <% end  %>
-              </li>
-            <% end %>
-          </ul>
-        </section>
+        <%= render partial: 'partials/dashboard/repos', locals: {facade: @user} %>
+        <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.followers, type: 'follower'} %>
+        <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.following, type: 'following'} %>
       </section>
     <% else %>
       <p><%= link_to "Connect to GitHub", :github_auth %></p>
