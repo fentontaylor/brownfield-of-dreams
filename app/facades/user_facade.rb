@@ -1,14 +1,14 @@
-class UserFacade
+class UserFacade < SimpleDelegator
   def initialize(user)
-    @user = user
+    @user = super(user)
   end
 
   def has_friends?
-    !@user.friends.empty?
+    !friends.empty?
   end
 
   def has_bookmarks?
-    !@user.bookmarked_videos.empty?
+    !bookmarked_videos.empty?
   end
 
   def five_repos
