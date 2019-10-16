@@ -1,0 +1,8 @@
+<section class='bookmarked'>
+  <h3>Bookmarked Segments</h3>
+  <% user.bookmarked_videos.each do |video| %>
+    <li id='bookmark-<%= video.id %>'>
+      <%= link_to "#{video.tutorial.title} - #{video.title}", tutorial_path(video.tutorial, params: { video_id: video.id }) %>
+    </li>
+  <% end %>
+</section>

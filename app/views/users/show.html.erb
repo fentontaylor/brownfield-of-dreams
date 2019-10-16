@@ -10,27 +10,10 @@
   </ul>
 
   <% if active_user? %>
-  <section class='bookmarked'>
-    <h3>Bookmarked Segments</h3>
-    <% current_user.bookmarked_videos.each do |video| %>
-      <li id='bookmark-<%= video.id %>'>
-        <%= link_to "#{video.tutorial.title} - #{video.title}", tutorial_path(video.tutorial, params: { video_id: video.id }) %>
-      </li>
-    <% end %>
-  </section>
+    <%= render partial: 'partials/dashboard/bookmarks', locals: {user: current_user} %>
+  <% if @user.has_friends? %>
+    <%= render partial: 'partials/dashboard/friends', locals: {user: current_user} %>
 
-  <% if current_user.friends != [] %>
-  <section class='friends-list'>
-      <h3>My Friends</h3>
-    <% current_user.friends.each do |friend| %>
-      <ul>
-        <li id="friend-<%= friend.id %>">
-          <%= "#{friend.first_name} #{friend.last_name} (#{friend.gh_user_name})" %>
-          <%= button_to 'Remove Friend', '/friendship', params: {user_id: current_user.id, friend_id: friend.id}, method: :delete %>
-        </li>
-      </ul>
-    <% end %>
-  </section>
   <% end %>
 
   <% if current_user.token %>
