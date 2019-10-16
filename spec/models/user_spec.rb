@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
 
     it '#unique_token' do
       user = create(:user)
-      token = user.unique_token
+      token = user.activation_token
       expect(token).to be_a(String)
       expect(token.length).to eq(64)
     end

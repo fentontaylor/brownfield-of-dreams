@@ -21,7 +21,7 @@ class User < ApplicationRecord
     videos.includes(:tutorial).order("videos.tutorial_id, videos.position")
   end
 
-  def unique_token
+  def activation_token
     salt = first_name + last_name + password_digest
     Digest::SHA256.hexdigest salt
   end
