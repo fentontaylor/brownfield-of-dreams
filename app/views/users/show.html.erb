@@ -3,7 +3,7 @@
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <hr>
-  <h3>Account Details</h3>
+  <h4>Account Details</h4>
   <ul>
     <li><%= current_user.first_name  %> <%= current_user.last_name %></li>
     <li><%= current_user.email%></li>
@@ -11,15 +11,12 @@
   </ul>
 
   <% if active_user? %>
-    <% if @user.has_bookmarks? %>
-      <%= render partial: 'partials/dashboard/bookmarks', locals: {user: current_user} %>
-    <% end %>
-    <% if @user.has_friends? %>
-      <%= render partial: 'partials/dashboard/friends', locals: {user: current_user} %>
-    <% end %>
+    <%= render partial: 'partials/dashboard/bookmarks', locals: {user: current_user, has_bookmarks: @user.has_bookmarks?} %>
+    <%= render partial: 'partials/dashboard/friends', locals: {user: current_user, has_friends: @user.has_friends?} %>
+    <hr>
+    <h4>GitHub</h4>
     <% if current_user.token %>
       <section class='github-info'>
-        <h3>GitHub</h3>
         <hr>
         <%= render partial: 'partials/dashboard/repos', locals: {facade: @user} %>
         <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.followers, type: 'follower'} %>
