@@ -17,7 +17,6 @@ describe 'As a registered user' do
     click_on 'Log In'
 
     within '.github-info' do
-      expect(page).to have_content('GitHub')
       within '.github-repos' do
         expect(page).to have_link('.dotfiles')
         expect(page).to have_link("1906-house-salad")
@@ -39,7 +38,6 @@ describe 'As a registered user' do
     click_on 'Log In'
 
     within '.github-info' do
-      expect(page).to have_content('GitHub')
       within '.github-repos' do
         expect(page).to have_link("1904_m2_mid_mod")
         expect(page).to have_link("activerecord-obstacle-course")

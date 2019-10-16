@@ -11,8 +11,12 @@ class UserFacade
     !@user.bookmarked_videos.empty?
   end
 
+  def five_repos
+    repos.first(5)
+  end
+
   def repos
-    service.get_repos.map { |hash| Repo.new(hash) }.shuffle.first(5)
+    service.get_repos.map { |hash| Repo.new(hash) }
   end
 
   def followers
