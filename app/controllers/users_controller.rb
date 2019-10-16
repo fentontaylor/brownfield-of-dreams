@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def show
-    @user = UserFacade.new(current_user)
+    if current_user
+      @user = UserFacade.new(current_user)
+    else
+      redirect_to login_path
+    end
   end
 
   def new
