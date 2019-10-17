@@ -8,6 +8,7 @@
     <li> <%= current_user.email%> </li>
   </ul>
 
+<% if current_user.bookmarked_videos != [] %>
   <section class='bookmarked'>
     <h3>Bookmarked Segments</h3>
     <% current_user.bookmarked_videos.each do |video| %>
@@ -16,6 +17,7 @@
       </li>
     <% end %>
   </section>
+  <% end %>
 
   <% if current_user.friends != [] %>
   <section class='friends-list'>
