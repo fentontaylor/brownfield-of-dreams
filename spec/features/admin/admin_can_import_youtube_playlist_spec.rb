@@ -8,7 +8,7 @@ describe "An Admin can import youtube playlist" do
       .and_return(admin)
   end
 
-  it "When I visit new tutorial creation page" do
+  it "When I visit new tutorial creation page", :js do
     visit new_admin_tutorial_path
 
     title = 'New Tutorial Title'
@@ -21,6 +21,7 @@ describe "An Admin can import youtube playlist" do
 
     click_on 'Import YouTube Playlist'
 
+    # capybara cannot find remote form params, but functionality works in development
     fill_in "tutorial[playlist_id]", with: "PL1Y67f0xPzdOq2FcpWnawJeyJ3ELUdBkJ"
 
     click_on "Save"
