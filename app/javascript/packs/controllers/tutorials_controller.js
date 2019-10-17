@@ -7,7 +7,7 @@ export default class extends Controller {
     fetch(`/api/v1/videos/${event.target.id}`)
       .then((response) => response.json())
       .then(function(response){
-        const desc = document.querySelector(`#description-${event.target.id}`);
+        const desc = document.querySelector(`#longer-description-${event.target.id}`);
         desc.innerHTML = response.description
       });
   }
