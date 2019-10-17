@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success
 
   def app_user?(user)
-    !!Identity.find_by(user_name: user.user_name)
+    !Identity.find_by(user_name: user.user_name).nil?
   end
 
   def current_user

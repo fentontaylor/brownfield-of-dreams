@@ -8,6 +8,6 @@ class GithubUser
 
   def friend_of?(current_user)
     friend_id = Identity.find_by(user_name: @user_name).user_id
-    !!Friendship.find_by(user_id: current_user.id, friend_id: friend_id)
+    !Friendship.find_by(user_id: current_user.id, friend_id: friend_id).nil?
   end
 end
