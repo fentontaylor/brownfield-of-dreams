@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Repo' do
   before :each do
-    @repo = Repo.new({name: 'Bob', html_url: 'example.com'})
+    @repo = Repo.new(name: 'Bob', html_url: 'example.com')
   end
 
   it 'can initialize with a hash of name and url' do
