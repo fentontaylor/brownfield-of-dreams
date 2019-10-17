@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::TutorialsController < Admin::BaseController
   def new
     @tutorial = Tutorial.new
@@ -33,8 +35,8 @@ class Admin::TutorialsController < Admin::BaseController
     redirect_to admin_dashboard_path
   end
 
-
   private
+
   def tutorial_params
     params.require(:tutorial).permit(:title, :description, :thumbnail, :classroom, :tag_list)
   end

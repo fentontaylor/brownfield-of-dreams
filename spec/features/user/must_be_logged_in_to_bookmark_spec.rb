@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'As an unregistered user' do
   before :each do
     @tutorial_1 = create(:tutorial)
     create(:video, tutorial: @tutorial_1)
-
   end
 
   it 'when I try to bookmark a video I see a notice informing me that I must be signed in to bookmark.' do
@@ -21,6 +22,6 @@ describe 'As an unregistered user' do
     visit tutorial_path(@tutorial_1)
     click_button('Bookmark')
 
-    expect(page).to have_content("Bookmark added to your dashboard!")
+    expect(page).to have_content('Bookmark added to your dashboard!')
   end
 end

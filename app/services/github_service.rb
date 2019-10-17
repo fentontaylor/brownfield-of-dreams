@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GithubService
   def initialize(user)
     @user = user
@@ -24,7 +26,7 @@ class GithubService
   def conn
     token = @user.token? ? @user.token : ENV['GITHUB_API_KEY']
     Faraday.new('https://api.github.com/',
-      headers: {'Authorization' => "bearer #{token}"})
+                headers: { 'Authorization' => "bearer #{token}" })
   end
 
   def get_json(path)

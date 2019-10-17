@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'As newly signed up user' do
@@ -23,8 +25,8 @@ describe 'As newly signed up user' do
       expect(current_path).to eq(dashboard_path)
 
       expect(page).to have_content("Logged in as #{first_name}")
-      expect(page).to have_content("This account has not yet been activated. Please check your email.")
-      expect(page).to have_content("Status: Inactive")
+      expect(page).to have_content('This account has not yet been activated. Please check your email.')
+      expect(page).to have_content('Status: Inactive')
 
       expect(page).to_not have_link('Connect to GitHub')
     end
@@ -36,7 +38,7 @@ describe 'As newly signed up user' do
 
       visit dashboard_path
 
-      expect(page).to have_content("Status: Active")
+      expect(page).to have_content('Status: Active')
       expect(page).to have_link('Connect to GitHub')
     end
   end

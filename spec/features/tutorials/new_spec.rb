@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'As an admin' do
@@ -30,7 +32,7 @@ describe 'As an admin' do
         tutorial = Tutorial.last
 
         expect(current_path).to eq tutorial_path(tutorial)
-        expect(page).to have_content("Successfully created tutorial.")
+        expect(page).to have_content('Successfully created tutorial.')
         expect(page).to have_content(title)
       end
     end

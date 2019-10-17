@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -46,12 +48,12 @@ Rails.application.configure do
 
   # mock omniauth for GitHub
   OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-      'provider' => 'github',
-      'uid' => '123545',
-      'credentials' => {
-        'token' => ENV['GITHUB_API_KEY'],
-        'secret' => 'mock_secret'
-      }
-    })
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+    'provider' => 'github',
+    'uid' => '123545',
+    'credentials' => {
+      'token' => ENV['GITHUB_API_KEY'],
+      'secret' => 'mock_secret'
+    }
+  )
 end

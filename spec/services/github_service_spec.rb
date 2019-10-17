@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "GithubService" do
+describe 'GithubService' do
   before :each do
     VCR.turn_off!
-    nancy = User.create!(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'])
+    nancy = User.create!(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password: 'password', role: :default, token: ENV['GITHUB_API_KEY_NL'])
 
-    stub_github_info("nancys")
+    stub_github_info('nancys')
 
     @service = GithubService.new(nancy)
   end
 
-  it "returns parsed repo data" do
+  it 'returns parsed repo data' do
     github_repos = @service.get_repos
 
     expect(github_repos).to be_an Array
@@ -19,7 +21,7 @@ describe "GithubService" do
     expect(github_repos.first).to have_key(:html_url)
   end
 
-  it "returns parsed follower data" do
+  it 'returns parsed follower data' do
     github_followers = @service.get_followers
 
     expect(github_followers).to be_an Array
@@ -28,7 +30,7 @@ describe "GithubService" do
     expect(github_followers.first).to have_key(:html_url)
   end
 
-  it "returns parsed following data" do
+  it 'returns parsed following data' do
     github_following = @service.get_following
 
     expect(github_following).to be_an Array
@@ -39,7 +41,7 @@ describe "GithubService" do
 end
 
 describe 'Email invite' do
-  it "returns public email" do
+  it 'returns public email' do
     VCR.turn_off!
     WebMock.allow_net_connect!
 
@@ -57,11 +59,11 @@ describe 'Email invite' do
     expect(data_2[:email]).to eq(nil)
 
     invalid_handle = 'asdfkljd;'
-    no_data =  service.get_email(invalid_handle)
+    no_data = service.get_email(invalid_handle)
 
     result = {
-      message: "Not Found",
-      documentation_url: "https://developer.github.com/v3/users/#get-a-single-user"
+      message: 'Not Found',
+      documentation_url: 'https://developer.github.com/v3/users/#get-a-single-user'
     }
 
     expect(no_data).to eq(result)

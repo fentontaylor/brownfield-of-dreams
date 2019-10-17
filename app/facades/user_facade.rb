@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserFacade < SimpleDelegator
   def initialize(user)
     @user = super(user)

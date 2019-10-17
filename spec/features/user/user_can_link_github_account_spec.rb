@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'A registered user' do
@@ -16,11 +18,11 @@ describe 'A registered user' do
 
     visit dashboard_path
 
-    expect(page).to have_link("Connect to GitHub")
+    expect(page).to have_link('Connect to GitHub')
 
-    click_on "Connect to GitHub"
+    click_on 'Connect to GitHub'
 
-    expect(page).to_not have_link("Connect to GitHub")
-    expect(page).to have_css(".github-info")
+    expect(page).to_not have_link('Connect to GitHub')
+    expect(page).to have_css('.github-info')
   end
 end

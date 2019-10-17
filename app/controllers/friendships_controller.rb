@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FriendshipsController < ApplicationController
   def create
     identity = Identity.find_by(user_name: params[:friend_name])
@@ -6,7 +8,7 @@ class FriendshipsController < ApplicationController
     if friendship.save
       flash[:success] = "You've added #{identity.user_name} to your friends list!"
     else
-      flash[:error] = "Unable to add friend"
+      flash[:error] = 'Unable to add friend'
     end
     redirect_to dashboard_path
   end
@@ -17,7 +19,7 @@ class FriendshipsController < ApplicationController
     if friendship.delete
       flash[:success] = "You removed #{user.first_name} #{user.last_name} from your friends list."
     else
-      flash[:error] = "Unable to remove friend at this time."
+      flash[:error] = 'Unable to remove friend at this time.'
     end
     redirect_to dashboard_path
   end

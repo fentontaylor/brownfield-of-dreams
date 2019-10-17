@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe "'Classroom' tutorials are restricted" do
@@ -25,8 +27,8 @@ describe "'Classroom' tutorials are restricted" do
       expect(page).to have_css('#player')
 
       visit "/tutorials/#{@classroom.id}"
-      expect(page).to have_content("You must be logged in to view this content.")
-      expect(page).to have_content("Please sign in or create a free account.")
+      expect(page).to have_content('You must be logged in to view this content.')
+      expect(page).to have_content('Please sign in or create a free account.')
       expect(page).to_not have_css('#player')
     end
   end
@@ -52,8 +54,8 @@ describe "'Classroom' tutorials are restricted" do
       expect(page).to have_css('#player')
 
       visit "/tutorials/#{@classroom.id}"
-      expect(page).to have_content("You must be logged in to view this content.")
-      expect(page).to have_content("Please sign in or create a free account.")
+      expect(page).to have_content('You must be logged in to view this content.')
+      expect(page).to have_content('Please sign in or create a free account.')
       expect(page).to_not have_css('#player')
     end
   end
