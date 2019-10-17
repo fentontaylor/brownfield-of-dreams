@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'visitor can create an account' do
   it 'visits the home page' do
     VCR.turn_off!
-    
+
     email = 'jimbob@aol.com'
     first_name = 'Jim'
     last_name = 'Bob'

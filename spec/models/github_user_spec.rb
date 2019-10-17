@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'GithubUser' do
   before :each do
-    @user = GithubUser.new({login: 'bobross', html_url: 'example.com'})
+    @user = GithubUser.new(login: 'bobross', html_url: 'example.com')
   end
 
   it 'can initialize with a hash of user_name and url' do
@@ -15,7 +15,7 @@ describe 'GithubUser' do
   end
 
   describe 'instance methods' do
-    it "#is_friend_of?" do
+    it '#is_friend_of?' do
       # create 3 users
       current_user = create(:user, id: 1)
       user_1 = create(:user, id: 2)

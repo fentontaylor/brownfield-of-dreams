@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def restricted_tutorial?(tutorial)
-    !tutorial.classroom || (current_user && current_user.is_active)
+    !tutorial.classroom || (current_user&.is_active)
   end
 
   def four_oh_four
