@@ -11,7 +11,7 @@ describe 'GithubService' do
   end
 
   it 'returns parsed repo data' do
-    github_repos = @service.get_repos
+    github_repos = @service.fetch_repos
 
     expect(github_repos).to be_an Array
 
@@ -20,7 +20,7 @@ describe 'GithubService' do
   end
 
   it 'returns parsed follower data' do
-    github_followers = @service.get_followers
+    github_followers = @service.fetch_followers
 
     expect(github_followers).to be_an Array
 
@@ -29,7 +29,7 @@ describe 'GithubService' do
   end
 
   it 'returns parsed following data' do
-    github_following = @service.get_following
+    github_following = @service.fetch_following
 
     expect(github_following).to be_an Array
 
