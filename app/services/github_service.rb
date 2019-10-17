@@ -3,6 +3,10 @@ class GithubService
     @user = user
   end
 
+  def get_email(handle)
+    get_json("users/#{handle}")
+  end
+
   def get_repos
     get_json('user/repos')
   end
@@ -18,8 +22,9 @@ class GithubService
   private
 
   def conn
+    token = @user.token? ? @user.token : ENV['GITHUB_API_KEY']
     Faraday.new('https://api.github.com/',
-      headers: {'Authorization' => "bearer #{@user.token}"})
+      headers: {'Authorization' => "bearer #{token}"})
   end
 
   def get_json(path)
