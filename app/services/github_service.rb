@@ -9,15 +9,15 @@ class GithubService
     get_json("users/#{handle}")
   end
 
-  def get_repos
+  def fetch_repos
     get_json('user/repos')
   end
 
-  def get_followers
+  def fetch_followers
     get_json('user/followers')
   end
 
-  def get_following
+  def fetch_following
     get_json('user/following')
   end
 
