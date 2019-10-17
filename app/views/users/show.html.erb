@@ -83,6 +83,7 @@
           </ul>
         <% end %>
       </section>
+      <p><%= link_to "Disconnect from Github", "/auth/github/#{current_user}", :method => :delete %></p>
     </section>
   <% else %>
     <p><%= link_to "Connect to Github", :github_auth %></p>
