@@ -36,4 +36,18 @@ class ApplicationController < ActionController::Base
   def four_oh_four
     render file: 'public/404', status: 404
   end
+
+  def add_videos(tutorial)
+    response = Faraday.get("https://www.googleapis.com/youtube/v3/playlistItems?key=#{ENV['YOUTUBE_API_KEY']}&playlistId=#{tutorial.playlist_id}&part=snippet&maxResults=50&order=date")
+    data = JSON.parse(response.body, symbolize_names: true)
+    data[:items].each.with_index(1) do |vid, index|
+      tutorial.videos.create!(
+        title:       vid[:snippet][:title],
+        description: vid[:snippet][:description],
+        thumbnail:   vid[:snippet][:thumbnails][:high][:url],
+        video_id:    vid[:snippet][:resourceId][:videoId],
+        position:    index
+      )
+    end
+  end
 end
