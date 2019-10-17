@@ -9,6 +9,7 @@ class TutorialSequencer
   end
 
   private
+
   attr_reader :tutorial, :sequenced_video_ids
 
   def videos
@@ -16,14 +17,12 @@ class TutorialSequencer
   end
 
   def update_position_if_changed!
-    sequenced_video_ids.each.with_index(1) do |video_id, index|
-      video = videos.find do |video|
-        video.id == video_id.to_i
+    sequenced_video_ids.each.with_index(1) do |_video_id, index|
+      video = videos.find do |vid|
+        vid.id == vid_id.to_i
       end
 
-      if video.position != index
-        video.update(position: index)
-      end
+      video.update(position: index) if video.position != index
     end
   end
 end
