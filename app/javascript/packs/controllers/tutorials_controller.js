@@ -24,10 +24,10 @@ bookmarkVideo(event) {
      credentials: 'same-origin'
    }).then(function(response) {
      return response.json();
-   }).then(function(data) {
-     console.log(data);
    });
+    alert("Bookmark added to your dashboard!");
 }
+
 
   showVideoForm(event) {
     event.preventDefault();
