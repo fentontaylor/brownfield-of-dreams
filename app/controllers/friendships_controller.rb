@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
     if friendship.save
       flash[:success] = "You've added #{identity.user_name} to your friends list!"
     else
-      flash[:error] = "Unable to add friend"
+      flash[:error] = "#{identity.user_name} is already a friend of yours."
     end
     redirect_to dashboard_path
   end
