@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
     if friendship.delete
       flash[:success] = "You removed #{user.first_name} #{user.last_name} from your friends list."
     else
-      flash[:error] = "Unable to remove friend at this time."
+      flash[:error] = 'Unable to remove friend at this time.'
     end
     redirect_to dashboard_path
   end

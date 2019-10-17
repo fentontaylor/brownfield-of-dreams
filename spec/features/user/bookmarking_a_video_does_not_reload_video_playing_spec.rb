@@ -19,6 +19,6 @@ describe 'As a registered user' do
     visit dashboard_path
     within :bookmarked do
         expect(page).to have_content(@tutorial.title)
-    end 
+    end
   end
 end

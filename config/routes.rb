@@ -14,12 +14,13 @@ Rails.application.routes.draw do
   get '/auth/developer', as: :developer_auth
   get '/auth/github', as: :github_auth
   get '/auth/github/callback', to: 'users#update'
+  delete '/auth/github', to: 'users#destroy'
 
   resources :friendships, only: [:create]
   delete '/friendship', to: 'friendships#destroy'
 
   namespace :admin do
-    get "/dashboard", to: "dashboard#show"
+    get '/dashboard', to: 'dashboard#show'
     resources :tutorials, except: [:index, :show] do
       resources :videos, only: [:create]
     end
