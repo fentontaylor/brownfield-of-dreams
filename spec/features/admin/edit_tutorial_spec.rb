@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe "An Admin can edit a tutorial" do
+
+  VCR.turn_off!(:ignore_cassettes => true)
+  WebMock.allow_net_connect!
+
   let(:tutorial) { create(:tutorial) }
   let(:admin)    { create(:admin) }
 
