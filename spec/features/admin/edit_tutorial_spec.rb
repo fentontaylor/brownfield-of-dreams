@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'An Admin can edit a tutorial' do
+describe "An Admin can edit a tutorial" do
   let(:tutorial) { create(:tutorial) }
   let(:admin)    { create(:admin) }
 

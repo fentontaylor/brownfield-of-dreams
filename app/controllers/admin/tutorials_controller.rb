@@ -6,6 +6,7 @@ class Admin::TutorialsController < Admin::BaseController
   def create
     @tutorial = Tutorial.new(tutorial_params)
     if @tutorial.save
+      add_videos(@tutorial) if tutorial_params[:playlist_id]
       flash[:success] = 'Successfully created tutorial.'
       redirect_to tutorial_path(@tutorial)
     else
@@ -34,7 +35,6 @@ class Admin::TutorialsController < Admin::BaseController
   private
 
   def tutorial_params
-    params.require(:tutorial)
-          .permit(:title, :description, :thumbnail, :classroom, :tag_list)
+    params.require(:tutorial).permit(:title, :description, :thumbnail, :classroom, :tag_list, :playlist_id)
   end
 end
