@@ -25,10 +25,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    token = request.env["omniauth.auth"]["credentials"]["token"]
+    token = request.env['omniauth.auth']['credentials']['token']
     user = User.find(current_user.id)
     user.token = token
     user.save
+    redirect_to dashboard_path
+  end
+
+  def destroy
+    user = User.find(current_user.id)
+    user.update(token: nil)
+
     redirect_to dashboard_path
   end
 
@@ -37,5 +44,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
-
 end
