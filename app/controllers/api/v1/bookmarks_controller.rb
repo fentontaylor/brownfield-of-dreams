@@ -4,16 +4,9 @@ class Api::V1::BookmarksController < ApplicationController
   def create
     user_video = UserVideo.new(user_video_params)
     if current_user.user_videos.find_by(video_id: user_video.video_id)
-<<<<<<< HEAD
       flash[:error] = 'Already in your bookmarks'
     elsif user_video.save
       # flash[:success] = "Bookmark added to your dashboard!"
-=======
-      # flash messages will no longer work due to fetch call. Need a solution to this.
-      flash[:error] = 'Already in your bookmarks'
-    elsif user_video.save
-      flash[:success] = 'Bookmark added to your dashboard!'
->>>>>>> d7e818256078b9fe2daee8811f53ffde63355ed9
     end
     redirect_back(fallback_location: root_path)
   end
