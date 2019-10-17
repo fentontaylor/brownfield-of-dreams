@@ -32,6 +32,13 @@ class UsersController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def destroy
+    user = User.find(current_user.id)
+    user.update(token: nil)
+
+    redirect_to dashboard_path
+  end
+
   private
 
   def user_params

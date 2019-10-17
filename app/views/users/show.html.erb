@@ -23,6 +23,7 @@
         <%= render partial: 'partials/dashboard/repos', locals: {facade: @user} %>
         <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.followers, type: 'follower', title: 'Followers'} %>
         <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.following, type: 'following', title: 'Following'} %>
+        <p><%= link_to "Disconnect from Github", "/auth/github/#{current_user}", :method => :delete %></p>
       </section>
     <% else %>
       <p><%= link_to "Connect to GitHub", :github_auth %></p>
