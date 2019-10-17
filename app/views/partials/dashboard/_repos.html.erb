@@ -1,0 +1,8 @@
+<section class='github-repos'>
+  <h3>Repos</h3>
+  <ul>
+    <% facade.five_repos.each do |repo| %>
+      <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
+    <% end %>
+  </ul>
+</section>

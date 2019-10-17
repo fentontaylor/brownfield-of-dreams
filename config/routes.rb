@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'users#update'
   delete '/auth/github', to: 'users#destroy'
 
+  get "/invite", to: 'invite#new'
+  post "/invite/create", to: 'invite#create'
+
   resources :friendships, only: [:create]
   delete '/friendship', to: 'friendships#destroy'
 
@@ -51,4 +54,6 @@ Rails.application.routes.draw do
   end
 
   resources :user_videos, only:[:create, :destroy]
+
+  get '/activator/:id', to: 'activator#update'
 end

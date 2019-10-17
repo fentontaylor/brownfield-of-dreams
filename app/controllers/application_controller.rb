@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :list_tags
   helper_method :tutorial_name
   helper_method :restricted_tutorial?
+  helper_method :active_user?
 
   add_flash_types :success
 
@@ -16,6 +17,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def active_user?
+    current_user.is_active
+  end
+
   def find_bookmark(id)
     current_user.user_videos.find_by(video_id: id)
   end
@@ -25,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def restricted_tutorial?(tutorial)
-    !tutorial.classroom || current_user
+    !tutorial.classroom || (current_user && current_user.is_active)
   end
 
   def four_oh_four

@@ -117,6 +117,10 @@ h4 {
   font-size: 125%;
 }
 
+tr:nth-child(even) {
+  background-color: #F0F8FF;
+}
+
 .videos {
   padding-left: 15px;
 }

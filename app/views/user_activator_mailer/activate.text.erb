@@ -1,0 +1,9 @@
+<% token = @user.activation_token %>
+<% uri = "/activator/#{@user.id}?activation_token=#{token}" %>
+<% production =  "http://brownfielddreams.herokuapp.com" + uri %>
+<% dev_test =  "http://localhost:3000" + uri %>
+<% url = Rails.env == 'production' ? production : dev_test %>
+<% message = "Visit here to activate your account." %>
+
+Hi <%= @user.first_name %>. Thank you for registering at Turing Tutorials.
+<%= link_to message, url %>
