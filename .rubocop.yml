@@ -1,0 +1,15 @@
+AllCops:
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - '**/*.rake'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 90
