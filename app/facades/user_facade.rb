@@ -5,11 +5,11 @@ class UserFacade < SimpleDelegator
     @user = super(user)
   end
 
-  def has_friends?
+  def friends?
     !friends.empty?
   end
 
-  def has_bookmarks?
+  def bookmarks?
     !bookmarked_videos.empty?
   end
 

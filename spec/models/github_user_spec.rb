@@ -17,7 +17,7 @@ describe 'GithubUser' do
   end
 
   describe 'instance methods' do
-    it '#is_friend_of?' do
+    it '#friend_of?' do
       # create 3 users
       current_user = create(:user, id: 1)
       user_1 = create(:user, id: 2)
@@ -30,8 +30,8 @@ describe 'GithubUser' do
       # create friendship
       friendship = Friendship.create(user_id: current_user.id, friend_id: user_1.id)
 
-      expect(ghuser_1.is_friend_of?(current_user)).to be true
-      expect(ghuser_2.is_friend_of?(current_user)).to be false
+      expect(ghuser_1.friend_of?(current_user)).to be true
+      expect(ghuser_2.friend_of?(current_user)).to be false
     end
   end
 end
