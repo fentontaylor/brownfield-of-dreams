@@ -1,82 +1,33 @@
 <section class="dashboard-main">
-  <h1> <%= current_user.first_name %>'s Dashboard </h1>
+  <h2> <%= @user.first_name %>'s Dashboard </h2>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
-  <h3>Account Details</h3>
+  <hr>
+  <h4>Account Details</h4>
   <ul>
-    <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
-    <li> <%= current_user.email%> </li>
+    <li><%= @user.first_name  %> <%= @user.last_name %></li>
+    <li><%= @user.email%></li>
+    <li>Status: <%= active_user? ? 'Active' : 'Inactive'%></li>
   </ul>
 
-  <section class='bookmarked'>
-    <h3>Bookmarked Segments</h3>
-    <% current_user.bookmarked_videos.each do |video| %>
-      <li id='bookmark-<%= video.id %>'>
-        <%= link_to "#{video.tutorial.title} - #{video.title}", tutorial_path(video.tutorial, params: { video_id: video.id }) %>
-      </li>
+  <% if active_user? %>
+    <%= link_to "Send an Invite", '/invite', class: "btn btn-primary mb1 bg-teal" %>
+
+    <%= render partial: 'partials/dashboard/bookmarks', locals: {user: @user, has_bookmarks: @user.has_bookmarks?} %>
+    <%= render partial: 'partials/dashboard/friends', locals: {user: @user, has_friends: @user.has_friends?} %>
+    <hr>
+    <h4>GitHub</h4>
+    <% if @user.token %>
+      <section class='github-info'>
+        <hr>
+        <%= render partial: 'partials/dashboard/repos', locals: {facade: @user} %>
+        <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.followers, type: 'follower', title: 'Followers'} %>
+        <%= render partial: 'partials/dashboard/follows', locals: {github_users: @user.following, type: 'following', title: 'Following'} %>
+      </section>
+    <% else %>
+      <p><%= link_to "Connect to GitHub", :github_auth %></p>
     <% end %>
-  </section>
-
-  <% if current_user.friends != [] %>
-  <section class='friends-list'>
-      <h3>My Friends</h3>
-    <% current_user.friends.each do |friend| %>
-      <ul>
-        <li id="friend-<%= friend.id %>">
-          <%= "#{friend.first_name} #{friend.last_name} (#{friend.gh_user_name})" %>
-          <%= button_to 'Remove Friend', '/friendship', params: {user_id: current_user.id, friend_id: friend.id}, method: :delete %>
-        </li>
-      </ul>
-    <% end %>
-  </section>
-  <% end %>
-
-  <% if current_user.token %>
-    <section class='github-info'>
-      <h2>GitHub</h2>
-      <hr>
-      <section class='github-repos'>
-        <h3>Repos</h3>
-        <ul>
-          <% @user.repos.each do |repo| %>
-            <li><%= link_to repo.name, repo.html_url, class: 'repo-link' %></li>
-          <% end %>
-        </ul>
-      </section>
-
-      <section class='github-followers'>
-        <h3>Followers</h3>
-        <ul>
-          <% @user.followers.each do |follower| %>
-            <li id='follower-<%= follower.user_name %>'>
-              <%= link_to follower.user_name, follower.html_url, class: 'follower-link' %>
-              <% if app_user?(follower) %>
-                <% unless follower.is_friend_of?(current_user) %>
-                  <%= button_to "Add as Friend", friendships_path(friend_name: follower.user_name)  %>
-                <% end %>
-              <% end  %>
-            </li>
-          <% end %>
-        </ul>
-      </section>
-
-      <section class='github-following'>
-        <h3>Following</h3>
-        <ul>
-          <% @user.following.each do |following| %>
-            <li id='following-<%= following.user_name %>'>
-              <%= link_to following.user_name, following.html_url, class: 'following-link' %>
-              <% if app_user?(following) %>
-                <% unless following.is_friend_of?(current_user) %>
-                  <%= button_to "Add as Friend", friendships_path(friend_name: following.user_name)  %>
-                <% end %>
-              <% end  %>
-            </li>
-          <% end %>
-        </ul>
-      </section>
-    </section>
   <% else %>
-    <p><%= link_to "Connect to Github", :github_auth %></p>
+    <h3 style="color:red">This account has not yet been activated. Please check your email.</h3>
   <% end %>
 </section>

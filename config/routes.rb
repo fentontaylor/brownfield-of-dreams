@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :tutorials, only:[:show, :index]
-      resources :videos, only:[:show]
+      resources :tutorials, only: [:show, :index]
+      resources :videos, only: [:show]
+      resources :bookmarks, only: [:create]
     end
   end
 
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   get '/auth/developer', as: :developer_auth
   get '/auth/github', as: :github_auth
   get '/auth/github/callback', to: 'users#update'
+
+  get "/invite", to: 'invite#new'
+  post "/invite/create", to: 'invite#create'
 
   resources :friendships, only: [:create]
   delete '/friendship', to: 'friendships#destroy'
@@ -49,4 +53,6 @@ Rails.application.routes.draw do
   end
 
   resources :user_videos, only:[:create, :destroy]
+
+  get '/activator/:id', to: 'activator#update'
 end

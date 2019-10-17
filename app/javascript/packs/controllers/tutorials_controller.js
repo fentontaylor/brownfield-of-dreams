@@ -12,6 +12,23 @@ export default class extends Controller {
       });
   }
 
+bookmarkVideo(event) {
+  event.preventDefault();
+   fetch(`/api/v1/bookmarks`, {
+     method: 'POST',
+     body: JSON.stringify({"user_id": event.target.getAttribute("user_id"), "video_id": event.target.getAttribute("video_id")}),
+     headers: {
+       'Content-Type': 'application/json',
+       'X-CSRF-Token': Rails.csrfToken ()
+     },
+     credentials: 'same-origin'
+   }).then(function(response) {
+     return response.json();
+   }).then(function(data) {
+     console.log(data);
+   });
+}
+
   showVideoForm(event) {
     event.preventDefault();
 

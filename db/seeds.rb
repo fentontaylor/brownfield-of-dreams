@@ -133,10 +133,10 @@ no_videos_tutorial_data = {
 
 Tutorial.create! no_videos_tutorial_data
 
-User.create(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
-ft = User.create(email: 'fenton@example.com', first_name: 'Fenton', last_name: 'Taylor', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_FT'])
+User.create(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin, is_active: true)
+ft = User.create(email: 'fenton@example.com', first_name: 'Fenton', last_name: 'Taylor', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_FT'], is_active: true)
 Identity.create(provider: 'github', uid: 1234, user_name: 'fentontaylor', user: ft)
-nl = User.create(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'])
+nl = User.create(email: 'nancy@example.com', first_name: 'Nancy', last_name: 'Lee', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NL'], is_active: true)
 Identity.create(provider: 'github', uid: 2345, user_name: 'nancylee713', user: nl)
-nt = User.create(email: 'nathan@example.com', first_name: 'Nathan', last_name: 'Thomas', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NT'])
+nt = User.create(email: 'nathan@example.com', first_name: 'Nathan', last_name: 'Thomas', password:  "password", role: :default, token: ENV['GITHUB_API_KEY_NT'], is_active: true)
 Identity.create(provider: 'github', uid: 3456, user_name: 'nathangthomas', user: nt)

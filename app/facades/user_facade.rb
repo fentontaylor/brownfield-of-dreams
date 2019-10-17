@@ -1,10 +1,22 @@
-class UserFacade
+class UserFacade < SimpleDelegator
   def initialize(user)
-    @user = user
+    @user = super(user)
+  end
+
+  def has_friends?
+    !friends.empty?
+  end
+
+  def has_bookmarks?
+    !bookmarked_videos.empty?
+  end
+
+  def five_repos
+    repos.first(5)
   end
 
   def repos
-    service.get_repos.map { |hash| Repo.new(hash) }.first(5)
+    service.get_repos.map { |hash| Repo.new(hash) }
   end
 
   def followers

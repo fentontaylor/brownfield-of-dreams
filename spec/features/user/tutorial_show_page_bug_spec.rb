@@ -7,7 +7,7 @@ describe 'As a registered user' do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    Tutorial.create!(title: 'Sample Tutorial', description: 'this is a test description')
+    create(:tutorial, title: 'Sample Tutorial')
   end
 
   it 'when i visit a tutorial that has no videos I am directed to a default page notifying me that there are no videos for the given tutorial' do
@@ -15,6 +15,6 @@ describe 'As a registered user' do
     visit root_path
     click_on('Sample Tutorial')
 
-    expect(page).to have_content("This tutorial has no videos at this time.")
+    expect(page).to have_content("Sorry, there are no videos for this tutorial at this time. We are working on it, please check back soon.")
   end
 end
