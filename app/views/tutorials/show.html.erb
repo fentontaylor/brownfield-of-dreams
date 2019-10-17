@@ -21,7 +21,13 @@
           <h3><%= @facade.current_video.title %></h3>
           <div class="bookmarks-btn">
             <% if current_user %>
-              <%= button_to "Bookmark", user_videos_path(video_id: @facade.current_video.id, user_id: current_user.id), method: :post, class: "btn btn-outline mb1 teal" %>
+
+            <div data-controller="tutorials" id="description-<%= @facade.current_video.id %>">
+              <%= button_to "Bookmark", "#", "data-action" => "click->tutorials#bookmarkVideo", video_id: @facade.current_video.id, user_id: current_user.id, class: "btn btn-outline mb1 teal"%>
+            </div>
+
+
+              <%# <%= button_to "Bookmark", api_v1_bookmarks_path(video_id: @facade.current_video.id, user_id: current_user.id), method: :post, class: "btn btn-outline mb1 teal" %>
             <% else %>
             <div class="bookmark">
               <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" data-placement="top" title="You must be a registered user to bookmark this tutorial.">
